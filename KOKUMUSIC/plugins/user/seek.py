@@ -4,10 +4,10 @@ from pyrogram import Client, filters
 
 from config import BANNED_USERS
 from strings import get_command
-from BADMUSIC import Platform, app
-from BADMUSIC.core.call import BAD
-from BADMUSIC.misc import db
-from BADMUSIC.utils import AdminRightsCheck, seconds_to_min
+from KOKUMUSIC import Platform, app
+from KOKUMUSIC.core.call import KOKU
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils import AdminRightsCheck, seconds_to_min
 
 # Command
 SEEK_COMMAND = get_command("SEEK_COMMAND")
@@ -50,7 +50,7 @@ async def seek_comm(cli, message: Message, _, chat_id):
         if n == 0:
             return await message.reply_text(_["admin_30"])
     try:
-        await BAD.seek_stream(
+        await KOKU.seek_stream(
             chat_id,
             file_path,
             seconds_to_min(to_seek),
