@@ -1,15 +1,12 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 from pyrogram import filters
 from pyrogram import filters, Client
 from pyrogram.types import Message
 
 from config import BANNED_USERS
-from BADMUSIC import app
-from BADMUSIC.core.call import BAD
-from BADMUSIC.utils.database import is_muted, mute_off, mute_on
-from BADMUSIC.utils.decorators import AdminRightsCheck
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import BAD
+from KOKUMUSIC.utils.database import is_muted, mute_off, mute_on
+from KOKUMUSIC.utils.decorators import AdminRightsCheck
 
 
 @Client.on_message(filters.command(["vcmute"], prefixes=["."]) & filters.group & ~BANNED_USERS)
@@ -20,7 +17,7 @@ async def mute_admin(cli, message: Message, _, chat_id):
     if await is_muted(chat_id):
         return await message.reply_text(_["admin_5"], disable_web_page_preview=True)
     await mute_on(chat_id)
-    await BAD.mute_stream(chat_id)
+    await KOKU.mute_stream(chat_id)
     await message.reply_text(
         _["admin_6"].format(message.from_user.mention), disable_web_page_preview=True
     )
@@ -34,7 +31,7 @@ async def unmute_admin(Client, message: Message, _, chat_id):
     if not await is_muted(chat_id):
         return await message.reply_text(_["admin_7"], disable_web_page_preview=True)
     await mute_off(chat_id)
-    await BAD.unmute_stream(chat_id)
+    await KOKU.unmute_stream(chat_id)
     await message.reply_text(
         _["admin_8"].format(message.from_user.mention), disable_web_page_preview=True
     )
