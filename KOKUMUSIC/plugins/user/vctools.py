@@ -12,8 +12,8 @@ from pyrogram.raw.functions.phone import (
     GetGroupParticipants,
 )
 from pyrogram.types import Message
-from BADMUSIC.utils.bad_ban import admin_filter
-from BADMUSIC.utils.database import get_assistant
+from KOKUMUSIC.utils.bad_ban import admin_filter
+from KOKUMUSIC.utils.database import get_assistant
 
 
 @Client.on_message(filters.command("vcstart", prefixes=["."]) & admin_filter)
