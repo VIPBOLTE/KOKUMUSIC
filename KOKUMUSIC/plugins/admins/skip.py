@@ -5,7 +5,7 @@ import config
 from config import BANNED_USERS
 from strings import get_command
 from KOKUMUSIC import Platform, app
-from KOKUMUSIC.core.call import BAD
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import db
 from KOKUMUSIC.utils.database import get_loop
 from KOKUMUSIC.utils.decorators import AdminRightsCheck
