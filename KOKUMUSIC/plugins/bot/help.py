@@ -1,6 +1,3 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 import re
 from math import ceil
 from typing import Union
@@ -11,10 +8,10 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 import config
 from config import BANNED_USERS, START_IMG_URL
 from strings import get_command, get_string
-from BADMUSIC import HELPABLE, app
-from BADMUSIC.utils.database import get_lang, is_commanddelete_on
-from BADMUSIC.utils.decorators.language import LanguageStart
-from BADMUSIC.utils.inline.help import private_help_panel
+from KOKUMUSIC import HELPABLE, app
+from KOKUMUSIC.utils.database import get_lang, is_commanddelete_on
+from KOKUMUSIC.utils.decorators.language import LanguageStart
+from KOKUMUSIC.utils.inline.help import private_help_panel
 
 ### Command
 HELP_COMMAND = get_command("HELP_COMMAND")
