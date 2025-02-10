@@ -1,6 +1,3 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 import asyncio
 import time
 import random
@@ -18,11 +15,11 @@ from youtubesearchpython.__future__ import VideosSearch
 import config
 from config import BANNED_USERS, START_IMG_URL
 from strings import get_string
-from BADMUSIC import Platform, app
-from BADMUSIC.misc import SUDOERS, _boot_
-from BADMUSIC.plugins.play.playlist import del_plist_msg
-from BADMUSIC.plugins.sudo.sudoers import sudoers_list
-from BADMUSIC.utils.database import (
+from KOKUMUSIC import Platform, app
+from KOKUMUSIC.misc import SUDOERS, _boot_
+from KOKUMUSIC.plugins.play.playlist import del_plist_msg
+from KOKUMUSIC.plugins.sudo.sudoers import sudoers_list
+from KOKUMUSIC.utils.database import (
     add_served_chat,
     add_served_user,
     get_assistant,
@@ -32,10 +29,10 @@ from BADMUSIC.utils.database import (
     is_on_off,
     is_served_private_chat,
 )
-from BADMUSIC.utils.decorators.language import LanguageStart
-from BADMUSIC.utils.formatters import get_readable_time
-from BADMUSIC.utils.functions import MARKDOWN, WELCOMEHELP
-from BADMUSIC.utils.inline import alive_panel, music_start_panel, start_pannel
+from KOKUMUSIC.utils.decorators.language import LanguageStart
+from KOKUMUSIC.utils.formatters import get_readable_time
+from KOKUMUSIC.utils.functions import MARKDOWN, WELCOMEHELP
+from KOKUMUSIC.utils.inline import alive_panel, music_start_panel, start_pannel
 
 from .help import paginate_modules
 
@@ -133,7 +130,7 @@ async def start_comm(client, message: Message, _):
                     details = stats.get(vidid)
                     title = (details["title"][:35]).title()
                     if vidid == "telegram":
-                        msg += f"🔗[ᴛᴇʟᴇɢʀᴀᴍ ғɪʟᴇs ᴀɴᴅ ᴀᴜᴅɪᴏs]({config.SUPPORT_GROUP}) ** played {count} ᴛɪᴍᴇs**\n\n"
+                        msg += f"🔗[ᴛᴇʟᴇɢʀᴀᴍ ғɪʟᴇs ᴀɴᴅ ᴀᴜᴅɪᴏs](https://t.me/{config.SUPPORT_CHAT}) ** played {count} ᴛɪᴍᴇs**\n\n"
                     else:
                         msg += f"🔗 [{title}](https://www..com/watch?v={vidid}) ** played {count} times**\n\n"
                 msg = _["ustats_2"].format(tot, tota, limit) + msg
