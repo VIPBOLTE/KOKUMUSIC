@@ -5,14 +5,14 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 import config
 from config import BANNED_USERS
 from strings import get_command
-from BADMUSIC import Platform, app
-from BADMUSIC.core.call import BAD
-from BADMUSIC.misc import db
-from BADMUSIC.utils.database import get_loop
-from BADMUSIC.utils.decorators import AdminRightsCheck
-from BADMUSIC.utils.inline.play import stream_markup, telegram_markup
-from BADMUSIC.utils.stream.autoclear import auto_clean
-from BADMUSIC.utils.thumbnails import gen_thumb
+from KOKUMUSIC import Platform, app
+from KOKUMUSIC.core.call import KOKU
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils.database import get_loop
+from KOKUMUSIC.utils.decorators import AdminRightsCheck
+from KOKUMUSIC.utils.inline.play import stream_markup, telegram_markup
+from KOKUMUSIC.utils.stream.autoclear import auto_clean
+from KOKUMUSIC.utils.thumbnails import gen_thumb
 
 # Commands
 SKIP_COMMAND = get_command("SKIP_COMMAND")
@@ -84,7 +84,7 @@ async def skip(cli, message: Message, _, chat_id):
                     disable_web_page_preview=True,
                 )
                 try:
-                    return await BAD.stop_stream(chat_id)
+                    return await KOKU.stop_stream(chat_id)
                 except Exception:
                     return
         except Exception:
@@ -93,7 +93,7 @@ async def skip(cli, message: Message, _, chat_id):
                     _["admin_10"].format(message.from_user.first_name),
                     disable_web_page_preview=True,
                 )
-                return await BAD.stop_stream(chat_id)
+                return await KOKU.stop_stream(chat_id)
             except Exception:
                 return
     queued = check[0]["file"]
@@ -109,7 +109,7 @@ async def skip(cli, message: Message, _, chat_id):
         if n == 0:
             return await message.reply_text(_["admin_11"].format(title))
         try:
-            await BAD.skip_stream(chat_id, link, video=status)
+            await KOKU.skip_stream(chat_id, link, video=status)
         except Exception:
             return await message.reply_text(_["call_7"])
         button = telegram_markup(_, chat_id)
@@ -136,7 +136,7 @@ async def skip(cli, message: Message, _, chat_id):
         except Exception:
             return await mystic.edit_text(_["call_7"])
         try:
-            await BAD.skip_stream(chat_id, file_path, video=status)
+            await KOKU.skip_stream(chat_id, file_path, video=status)
         except Exception:
             return await mystic.edit_text(_["call_7"])
         button = stream_markup(_, videoid, chat_id)
@@ -156,7 +156,7 @@ async def skip(cli, message: Message, _, chat_id):
         await mystic.delete()
     elif "index_" in queued:
         try:
-            await BAD.skip_stream(chat_id, videoid, video=status)
+            await KOKU.skip_stream(chat_id, videoid, video=status)
         except Exception:
             return await message.reply_text(_["call_7"])
         button = telegram_markup(_, chat_id)
@@ -169,7 +169,7 @@ async def skip(cli, message: Message, _, chat_id):
         db[chat_id][0]["markup"] = "tg"
     else:
         try:
-            await BAD.skip_stream(chat_id, queued, video=status)
+            await KOKU.skip_stream(chat_id, queued, video=status)
         except Exception:
             return await message.reply_text(_["call_7"])
         if videoid == "telegram":
@@ -181,7 +181,7 @@ async def skip(cli, message: Message, _, chat_id):
                     else config.TELEGRAM_VIDEO_URL
                 ),
                 caption=_["stream_1"].format(
-                    title, config.SUPPORT_GROUP, check[0]["dur"], user
+                    title, https://t.me/{config.SUPPORT_CHAT}, check[0]["dur"], user
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
