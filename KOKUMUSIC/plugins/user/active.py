@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
-from BADMUSIC.utils.database import get_active_chats, get_active_video_chats
+from KOKUMUSIC.utils.database import get_active_chats, get_active_video_chats
 
 
 @Client.on_message(filters.command(["ac", "activevc", "activevoice"], prefixes=["."]))
