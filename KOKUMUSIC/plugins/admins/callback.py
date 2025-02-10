@@ -308,7 +308,7 @@ async def admin_callback(client, CallbackQuery, _):
             await mystic.delete()
         elif "index_" in queued:
             try:
-                await BAD.skip_stream(chat_id, videoid, video=status)
+                await KOKU.skip_stream(chat_id, videoid, video=status)
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_7"])
             button = telegram_markup(_, chat_id)
@@ -322,7 +322,7 @@ async def admin_callback(client, CallbackQuery, _):
             await CallbackQuery.edit_message_text(txt)
         else:
             try:
-                await BAD.skip_stream(chat_id, queued, video=status)
+                await KOKU.skip_stream(chat_id, queued, video=status)
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_7"])
             if videoid == "telegram":
@@ -334,7 +334,7 @@ async def admin_callback(client, CallbackQuery, _):
                         else TELEGRAM_VIDEO_URL
                     ),
                     caption=_["stream_1"].format(
-                        title, SUPPORT_GROUP, check[0]["dur"], user
+                        title, f"https://t.me/{SUPPORT_CHAT}", check[0]["dur"], user
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
@@ -349,7 +349,7 @@ async def admin_callback(client, CallbackQuery, _):
                         else TELEGRAM_VIDEO_URL
                     ),
                     caption=_["stream_1"].format(
-                        title, SUPPORT_GROUP, check[0]["dur"], user
+                        title, f"https://t.me/{SUPPORT_CHAT}", check[0]["dur"], user
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
