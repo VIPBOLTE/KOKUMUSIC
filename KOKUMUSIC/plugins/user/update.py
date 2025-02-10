@@ -1,11 +1,9 @@
-
 import asyncio
 import math
 import os
 import shutil
 import socket
 from datetime import datetime
-
 import dotenv
 import heroku3
 import requests
@@ -14,7 +12,6 @@ from git import Repo
 from git.exc import GitCommandError, InvalidGitRepositoryError
 from pyrogram import filters
 from pyrogram import filters, Client
-
 import config
 from config import OWNER_ID
 from strings import get_command
@@ -26,8 +23,8 @@ from BADMUSIC.utils.database import (
     remove_active_chat,
     remove_active_video_chat,
 )
-from BADMUSIC.utils.decorators.language import language
-from BADMUSIC.utils.pastebin import BADbin
+from KOKUMUSIC.utils.decorators.language import language
+from KOKUMUSIC.utils.pastebin import BADbin
 
 # Commands
 GETLOG_COMMAND = get_command("GETLOG_COMMAND")
@@ -224,8 +221,8 @@ import requests
 from pyrogram import filters
 
 import config
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
 from pyrogram import filters, Client
 
 # Heroku API base URL
