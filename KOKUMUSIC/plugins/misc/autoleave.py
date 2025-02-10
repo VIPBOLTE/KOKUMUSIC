@@ -4,9 +4,9 @@ from datetime import datetime
 from pyrogram.enums import ChatType
 
 import config
-from BADMUSIC import app
-from BADMUSIC.core.call import BAD, autoend
-from BADMUSIC.utils.database import get_client, is_active_chat, is_autoend
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import KOKU, autoend
+from KOKUMUSIC.utils.database import get_client, is_active_chat, is_autoend
 
 
 async def auto_leave():
@@ -60,7 +60,7 @@ async def auto_end():
                     continue
                 autoend[chat_id] = {}
                 try:
-                    await BAD.stop_stream(chat_id)
+                    await KOKU.stop_stream(chat_id)
                 except:
                     continue
                 try:
