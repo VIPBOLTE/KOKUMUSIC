@@ -8,7 +8,6 @@ from config import (
     BANNED_USERS,
     SOUNCLOUD_IMG_URL,
     STREAM_IMG_URL,
-    SUPPORT_GROUP,
     TELEGRAM_AUDIO_URL,
     TELEGRAM_VIDEO_URL,
     adminlist,
@@ -421,7 +420,7 @@ async def admin_callback(client, CallbackQuery, _):
             if n == 0:
                 return await mystic.edit_text(_["admin_30"])
         try:
-            await BAD.seek_stream(
+            await KOKU.seek_stream(
                 chat_id,
                 file_path,
                 seconds_to_min(to_seek),
