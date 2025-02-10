@@ -1,17 +1,14 @@
-
-
 from pyrogram import filters
 from pyrogram import filters, Client
 import config
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.utils.database import add_off, add_on
-from BADMUSIC.utils.decorators.language import language
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import add_off, add_on
+from KOKUMUSIC.utils.decorators.language import language
 
 # Commands
 LOGGER_COMMAND = get_command("LOGGER_COMMAND")
-
 
 @Client.on_message(filters.command(LOGGER_COMMAND) & SUDOERS)
 @language
