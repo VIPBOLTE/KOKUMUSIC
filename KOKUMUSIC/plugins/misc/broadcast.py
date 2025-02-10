@@ -9,9 +9,9 @@ from pyrogram.raw import types
 import config
 from config import OWNER_ID, adminlist, chatstats, clean, userstats
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.utils.cleanmode import protected_messages
-from BADMUSIC.utils.database import (
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.cleanmode import protected_messages
+from KOKUMUSIC.utils.database import (
     get_active_chats,
     get_authuser_names,
     get_particular_top,
