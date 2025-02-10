@@ -148,7 +148,7 @@ async def admin_callback(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_1"], show_alert=True)
         await CallbackQuery.answer()
         await music_off(chat_id)
-        await BAD.pause_stream(chat_id)
+        await KOKU.pause_stream(chat_id)
         await CallbackQuery.message.reply_text(
             _["admin_2"].format(mention), disable_web_page_preview=True
         )
@@ -157,7 +157,7 @@ async def admin_callback(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_3"], show_alert=True)
         await CallbackQuery.answer()
         await music_on(chat_id)
-        await BAD.resume_stream(chat_id)
+        await KOKU.resume_stream(chat_id)
         await CallbackQuery.message.reply_text(
             _["admin_4"].format(mention), disable_web_page_preview=True
         )
@@ -169,7 +169,7 @@ async def admin_callback(client, CallbackQuery, _):
         except Exception:
             pass
         await CallbackQuery.answer()
-        await BAD.stop_stream(chat_id)
+        await KOKU.stop_stream(chat_id)
         await set_loop(chat_id, 0)
         await CallbackQuery.message.reply_text(
             _["admin_9"].format(mention), disable_web_page_preview=True
@@ -179,7 +179,7 @@ async def admin_callback(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_5"], show_alert=True)
         await CallbackQuery.answer()
         await mute_on(chat_id)
-        await BAD.mute_stream(chat_id)
+        await KOKU.mute_stream(chat_id)
         await CallbackQuery.message.reply_text(
             _["admin_6"].format(mention), disable_web_page_preview=True
         )
@@ -309,7 +309,7 @@ async def admin_callback(client, CallbackQuery, _):
             await mystic.delete()
         elif "index_" in queued:
             try:
-                await BAD.skip_stream(chat_id, videoid, video=status)
+                await KOKU.skip_stream(chat_id, videoid, video=status)
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_7"])
             button = telegram_markup(_, chat_id)
@@ -323,7 +323,7 @@ async def admin_callback(client, CallbackQuery, _):
             await CallbackQuery.edit_message_text(txt)
         else:
             try:
-                await BAD.skip_stream(chat_id, queued, video=status)
+                await KOKU.skip_stream(chat_id, queued, video=status)
             except Exception:
                 return await CallbackQuery.message.reply_text(_["call_7"])
             if videoid == "telegram":
@@ -335,7 +335,7 @@ async def admin_callback(client, CallbackQuery, _):
                         else TELEGRAM_VIDEO_URL
                     ),
                     caption=_["stream_1"].format(
-                        title, SUPPORT_GROUP, check[0]["dur"], user
+                        title, https://t.me/{SUPPORT_CHAT}, check[0]["dur"], user
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
@@ -350,7 +350,7 @@ async def admin_callback(client, CallbackQuery, _):
                         else TELEGRAM_VIDEO_URL
                     ),
                     caption=_["stream_1"].format(
-                        title, SUPPORT_GROUP, check[0]["dur"], user
+                        title, https://t.me/{config.SUPPORT_CHAT}, check[0]["dur"], user
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
