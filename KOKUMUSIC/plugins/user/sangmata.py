@@ -30,8 +30,8 @@ async def sg(client: Client, message: Message):
             return await lol.edit("<code>Please specify a valid user!</code>")
     sgbot = ["sangmata_bot", "sangmata_beta_bot"]
     sg = random.choice(sgbot)
-    BAD = random.choice(assistants)
-    ubot = await get_client(BAD)
+    KOKU = random.choice(assistants)
+    ubot = await get_client(KOKU)
 
     try:
         a = await ubot.send_message(sg, f"{user.id}")
