@@ -1,5 +1,3 @@
-
-
 import os
 import re
 import subprocess
@@ -14,9 +12,9 @@ from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import OWNER_ID
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.utils.cleanmode import protect_message
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.cleanmode import protect_message
 
 
 async def aexec(code, client, message):
