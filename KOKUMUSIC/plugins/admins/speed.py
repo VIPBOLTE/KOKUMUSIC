@@ -2,16 +2,15 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from config import BANNED_USERS, adminlist
-from BADMUSIC import app
-from BADMUSIC.core.call import BAD
-from BADMUSIC.misc import SUDOERS, db
-from BADMUSIC.utils import AdminRightsCheck
-from BADMUSIC.utils.database import is_active_chat, is_nonadmin_chat
-from BADMUSIC.utils.decorators.language import languageCB
-from BADMUSIC.utils.inline import close_markup, speed_markup
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import BAD
+from KOKUMUSIC.misc import SUDOERS, db
+from KOKUMUSIC.utils import AdminRightsCheck
+from KOKUMUSIC.utils.database import is_active_chat, is_nonadmin_chat
+from KOKUMUSIC.utils.decorators.language import languageCB
+from KOKUMUSIC.utils.inline import close_markup, speed_markup
 
 checker = []
-
 
 @app.on_message(
     filters.command(["cspeed", "speed", "cslow", "slow", "playback", "cplayback"])
@@ -85,7 +84,7 @@ async def del_back_playlist(client, callback_query, _):
         text=_["speed_6"].format(callback_query.from_user.mention),
     )
     try:
-        await BAD.speedup_stream(
+        await KOKU.speedup_stream(
             chat_id,
             file_path,
             speed,
