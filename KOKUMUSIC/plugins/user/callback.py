@@ -16,7 +16,7 @@ from config import (
     lyrical,
 )
 from KOKUMUSIC import Platform, app
-from KOKUMUSIC.core.call import BAD
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import SUDOERS, db
 from KOKUMUSIC.utils import seconds_to_min, time_to_seconds
 from KOKUMUSIC.utils.channelplay import get_channeplayCB
@@ -188,7 +188,7 @@ async def admin_callback(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_7"], show_alert=True)
         await CallbackQuery.answer()
         await mute_off(chat_id)
-        await BAD.unmute_stream(chat_id)
+        await KOKU.unmute_stream(chat_id)
         await CallbackQuery.message.reply_text(
             _["admin_8"].format(mention), disable_web_page_preview=True
         )
