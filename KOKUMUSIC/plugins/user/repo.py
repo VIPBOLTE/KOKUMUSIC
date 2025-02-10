@@ -1,6 +1,6 @@
 import asyncio
-
-from BADMUSIC import app
+import config
+from KOKUMUSIC import app
 from pyrogram import filters
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -14,18 +14,18 @@ async def start(client: Client, message: Message):
             [
                [
             InlineKeyboardButton(
-                text="☆ ᴏᴡɴᴇʀ 💗 ", url=f"https://t.me/ll_BAD_MUNDA_ll"
+                text="☆ ᴏᴡɴᴇʀ 💗 ", url=f"https://t.me/{config.SUPPORT_CHANNEL}"
             ),
             InlineKeyboardButton(
-                text="☆ ɢʀᴏᴜᴘ 💗", url=f"https://t.me/PBX_CHAT"
+                text="☆ ɢʀᴏᴜᴘ 💗", url=f"https://t.me/{config.SUPPORT_CHAT}"
             ),
         ],
           [
             InlineKeyboardButton(
-                text="☆ ᴄʜᴀɴɴᴇʟ 💗 ", url=f"https://t.me/HEROKUBIN_01"
+                text="☆ ᴄʜᴀɴɴᴇʟ 💗 ", url=f"https://t.me/{config.SUPPORT_CHANNEL}"
             ),
             InlineKeyboardButton(
-                text="☆ ʀᴇᴘᴏ 💗", url=f"https://github.com/Badhacker98/BADMUSIC/fork"
+                text="☆ ʀᴇᴘᴏ 💗", url=f"{config.GITHUB_REPO}/fork"
             ),
         ],
                 [
