@@ -1,7 +1,3 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
-
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -11,8 +7,8 @@ from pyrogram import Client, filters
 from youtubesearchpython.__future__ import VideosSearch
 
 from config import BANNED_USERS
-from BADMUSIC import app
-from BADMUSIC.utils.inlinequery import answer
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.inlinequery import answer
 
 
 @Client.on_inline_query(~BANNED_USERS)
