@@ -4,8 +4,8 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.raw.functions.messages import DeleteHistory
 
-from BADMUSIC.core.userbot import assistants
-from BADMUSIC.utils.database import get_client
+from KOKUMUSIC.core.userbot import assistants
+from KOKUMUSIC.utils.database import get_client
 
 
 @Client.on_message(filters.command(["sg"], prefixes=["."]))
