@@ -12,8 +12,8 @@ from KOKUMUSIC.utils.database import (
     get_authuser_names,
     save_authuser,
 )
-from BADMUSIC.utils.decorators import AdminActual, language
-from BADMUSIC.utils.formatters import int_to_alpha
+from KOKUMUSIC.utils.decorators import AdminActual, language
+from KOKUMUSIC.utils.formatters import int_to_alpha
 
 # Command
 AUTH_COMMAND = get_command("AUTH_COMMAND")
