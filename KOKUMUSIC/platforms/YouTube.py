@@ -11,9 +11,9 @@ from youtubesearchpython.__future__ import VideosSearch
 from yt_dlp import YoutubeDL
 
 import config
-from BADMUSIC.utils.database import is_on_off
-from BADMUSIC.utils.formatters import time_to_seconds, seconds_to_min
-from BADMUSIC.utils.decorators import asyncify
+from KOKUMUSIC.utils.database import is_on_off
+from KOKUMUSIC.utils.formatters import time_to_seconds, seconds_to_min
+from KOKUMUSIC.utils.decorators import asyncify
 
 
 def cookies():
