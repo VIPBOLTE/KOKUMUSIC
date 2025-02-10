@@ -8,7 +8,7 @@ import sys
 from os.path import abspath, dirname, isfile, join
 
 from config import EXTRA_PLUGINS, EXTRA_PLUGINS_FOLDER, EXTRA_PLUGINS_REPO
-from BADMUSIC import LOGGER
+from KOKUMUSIC import LOGGER
 
 logger = LOGGER(__name__)
 
