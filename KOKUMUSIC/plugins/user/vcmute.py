@@ -4,7 +4,7 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS
 from KOKUMUSIC import app
-from KOKUMUSIC.core.call import BAD
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.utils.database import is_muted, mute_off, mute_on
 from KOKUMUSIC.utils.decorators import AdminRightsCheck
 
