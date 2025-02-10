@@ -5,10 +5,10 @@ from pyrogram.types import ChatMemberUpdated
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import InviteRequestSent
 
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.utils.database import get_assistant
-from BADMUSIC.utils.bad_ban import admin_filter
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import get_assistant
+from KOKUMUSIC.utils.bad_ban import admin_filter
 
 links = {}
 
