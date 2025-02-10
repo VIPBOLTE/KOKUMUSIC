@@ -238,7 +238,7 @@ async def admin_callback(client, CallbackQuery, _):
                 await CallbackQuery.message.reply_text(
                     _["admin_10"].format(mention), disable_web_page_preview=True
                 )
-                return await BAD.stop_stream(chat_id)
+                return await KOKU.stop_stream(chat_id)
         elif command == "Replay":
             db[chat_id][0]["played"] = 0
 
@@ -422,7 +422,7 @@ async def admin_callback(client, CallbackQuery, _):
             if n == 0:
                 return await mystic.edit_text(_["admin_30"])
         try:
-            await BAD.seek_stream(
+            await KOKU.seek_stream(
                 chat_id,
                 file_path,
                 seconds_to_min(to_seek),
