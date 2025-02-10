@@ -14,10 +14,10 @@ from pyrogram.types import (
 
 from config import BANNED_USERS, adminlist
 from strings import get_string
-from BADMUSIC import app
-from BADMUSIC.core.call import BAD
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.plugins import extra_plugins_enabled
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import KOKU
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.plugins import extra_plugins_enabled
 from BADMUSIC.utils.database import (
     delete_filter,
     get_cmode,
@@ -92,7 +92,7 @@ async def stop_music(cli, message: Message):
             else:
                 if message.from_user.id not in admins:
                     return await message.reply_text(_["admin_19"])
-    await BAD.st_stream(chat_id)
+    await KOKU.st_stream(chat_id)
     await set_loop(chat_id, 0)
     await message.reply_text(_["admin_9"].format(message.from_user.mention))
 
@@ -102,9 +102,9 @@ import random
 from pyrogram import filters
 from pyrogram.types import Message
 
-from BADMUSIC import app
+from KOKUMUSIC import app
 from pyrogram import filters, Client
-from BADMUSIC.utils.database import get_assistant
+from KOKUMUSIC.utils.database import get_assistant
 
 photo = [
     "https://envs.sh/qeq.jpg",
