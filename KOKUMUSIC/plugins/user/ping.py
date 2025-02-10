@@ -6,7 +6,7 @@ from datetime import datetime
 from pyrogram import __version__, filters, Client
 from pyrogram.types import Message
 from platform import python_version
-from BADMUSIC.misc import SUDOERS as SUDO_USER
+from KOKUMUSIC.misc import SUDOERS as SUDO_USER
 from config import*
 
 START_TIME = datetime.utcnow()
