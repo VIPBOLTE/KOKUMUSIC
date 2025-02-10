@@ -2,7 +2,7 @@ import asyncio
 
 from pyrogram import Client, filters
 
-from BADMUSIC.utils.bad_ban import admin_filter
+from KOKUMUSIC.utils.bad_ban import admin_filter
 
 SPAM_CHATS = []
 
