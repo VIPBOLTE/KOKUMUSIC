@@ -1,8 +1,8 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from BADMUSIC import app
-from BADMUSIC.core.call import BAD
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import KOKU
 
 
 @app.on_message(filters.video_chat_started, group=20)
@@ -13,6 +13,6 @@ async def force_stop_stream(_, message: Message):
         if message.left_chat_member and not message.left_chat_member is None:
             if message.left_chat_member.id == (await get_assistant(message.chat.id)).id:
                 return await BAD.force_stop_stream(message.chat.id)
-        await BAD.force_stop_stream(message.chat.id)
+        await KOKU.force_stop_stream(message.chat.id)
     except Exception:
         pass
