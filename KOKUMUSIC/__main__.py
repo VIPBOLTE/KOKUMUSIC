@@ -8,6 +8,7 @@ from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.plugins import ALL_MODULES
 from KOKUMUSIC.utils.database import get_banned_users, get_gbanned
 
+
 async def init():
     if (
         not config.STRING1
