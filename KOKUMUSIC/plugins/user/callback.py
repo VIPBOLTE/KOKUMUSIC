@@ -335,7 +335,7 @@ async def admin_callback(client, CallbackQuery, _):
                         else TELEGRAM_VIDEO_URL
                     ),
                     caption=_["stream_1"].format(
-                        title, https://t.me/{SUPPORT_CHAT}, check[0]["dur"], user
+                        title, f"https://t.me/{SUPPORT_CHAT}", check[0]["dur"], user
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
