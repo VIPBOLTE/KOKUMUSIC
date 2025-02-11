@@ -24,8 +24,8 @@ from KOKUMUSIC.utils.database import (
     update_particular_top,
     update_user_top,
 )
-from BADMUSIC.utils.decorators.language import language
-from BADMUSIC.utils.formatters import alpha_to_int
+from KOKUMUSIC.utils.decorators.language import language
+from KOKUMUSIC.utils.formatters import alpha_to_int
 
 BROADCAST_COMMAND = get_command("BROADCAST_COMMAND")
 AUTO_DELETE = config.CLEANMODE_DELETE_MINS
