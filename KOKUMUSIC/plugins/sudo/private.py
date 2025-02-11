@@ -11,7 +11,7 @@ from KOKUMUSIC.utils.database import (
     is_served_private_chat,
     remove_private_chat,
 )
-from BADMUSIC.utils.decorators.language import language
+from KOKUMUSIC.utils.decorators.language import language
 
 AUTHORIZE_COMMAND = get_command("AUTHORIZE_COMMAND")
 UNAUTHORIZE_COMMAND = get_command("UNAUTHORIZE_COMMAND")
