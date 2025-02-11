@@ -3,8 +3,8 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS, adminlist
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.utils.database import (
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import (
     delete_authuser,
     get_authuser,
     get_authuser_names,
