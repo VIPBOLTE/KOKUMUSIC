@@ -3,7 +3,7 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS, adminlist
 from KOKUMUSIC import app
-from KOKUMUSIC.core.call import BAD
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import SUDOERS, db
 from KOKUMUSIC.utils import AdminRightsCheck
 from KOKUMUSIC.utils.database import is_active_chat, is_nonadmin_chat
