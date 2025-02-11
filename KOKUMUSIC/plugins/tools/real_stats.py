@@ -5,10 +5,10 @@ from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
 
-from BADMUSIC import app
-from BADMUSIC.core.mongo import mongodb
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.utils import get_readable_time
+from KOKUMUSIC import app
+from KOKUMUSIC.core.mongo import mongodb
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils import get_readable_time
 
 chatsdb = mongodb.chats
 usersdb = mongodb.tgusersdb
