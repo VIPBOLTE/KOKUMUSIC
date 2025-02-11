@@ -1,6 +1,4 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-"""
+
 import random
 import re
 import string
@@ -11,8 +9,8 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import BANNED_USERS, lyrical
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.utils.decorators.language import language
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.decorators.language import language
 
 ###Commands
 LYRICS_COMMAND = get_command("LYRICS_COMMAND")
@@ -53,4 +51,3 @@ async def lrsearch(client, message: Message, _):
         ]
     )
     await m.edit(_["lyrics_4"], reply_markup=upl)
-"""
