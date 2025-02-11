@@ -25,9 +25,9 @@ from pytgcalls.types.stream import StreamAudioEnded
 
 import config
 from strings import get_string
-from BADMUSIC import LOGGER, Platform, app
-from BADMUSIC.misc import db
-from BADMUSIC.utils.database import (
+from KOKUMUSIC import LOGGER, Platform, app
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils.database import (
     add_active_chat,
     add_active_video_chat,
     get_assistant,
@@ -42,11 +42,11 @@ from BADMUSIC.utils.database import (
     remove_active_video_chat,
     set_loop,
 )
-from BADMUSIC.utils.exceptions import AssistantErr
-from BADMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
-from BADMUSIC.utils.inline.play import stream_markup, telegram_markup
-from BADMUSIC.utils.stream.autoclear import auto_clean
-from BADMUSIC.utils.thumbnails import gen_thumb
+from KOKUMUSIC.utils.exceptions import AssistantErr
+from KOKUMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
+from KOKUMUSIC.utils.inline.play import stream_markup, telegram_markup
+from KOKUMUSIC.utils.stream.autoclear import auto_clean
+from KOKUMUSIC.utils.thumbnails import gen_thumb
 
 
 autoend = {}
@@ -630,4 +630,4 @@ class Call(PyTgCalls):
                 return
             await self.change_stream(client, update.chat_id)
 
-BAD = Call()
+KOKU = Call()
