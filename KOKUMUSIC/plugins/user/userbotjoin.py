@@ -8,7 +8,7 @@ from pyrogram.errors import InviteRequestSent
 from KOKUMUSIC import app
 from KOKUMUSIC.misc import SUDOERS
 from KOKUMUSIC.utils.database import get_assistant
-from KOKUMUSIC.utils.bad_ban import admin_filter
+from KOKUMUSIC.utils.KOKU_BAN import admin_filter
 
 links = {}
 
