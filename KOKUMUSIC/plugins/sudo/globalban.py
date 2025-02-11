@@ -144,9 +144,9 @@ from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message, User
 
 from config import BANNED_USERS
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.utils.database import add_banned_user, is_banned_user, remove_banned_user
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import add_banned_user, is_banned_user, remove_banned_user
 
 
 async def extract_user(m: Message) -> User:
