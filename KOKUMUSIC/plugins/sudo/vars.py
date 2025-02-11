@@ -48,7 +48,7 @@ async def varsFunc(client, message):
     if not config.SUPPORT_GROUP:
         s_g = "No"
     else:
-        s_g = f"[Group]({config.SUPPORT_GROUP})"
+        s_g = f"[Group]({config.SUPPORT_CHAT})"
     if not config.GIT_TOKEN:
         token = "No"
     else:
