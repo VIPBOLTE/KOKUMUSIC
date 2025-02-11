@@ -18,7 +18,7 @@ from KOKUMUSIC import app
 from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import SUDOERS
 from KOKUMUSIC.plugins import extra_plugins_enabled
-from BADMUSIC.utils.database import (
+from KOKUMUSIC.utils.database import (
     delete_filter,
     get_cmode,
     get_lang,
