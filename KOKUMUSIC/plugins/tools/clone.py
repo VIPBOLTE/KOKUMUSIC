@@ -10,11 +10,11 @@ from pyrogram.errors.exceptions.bad_request_400 import (
     AccessTokenExpired,
     AccessTokenInvalid,
 )
-from BADMUSIC.utils.database import get_assistant
+from KOKUMUSIC.utils.database import get_assistant
 from config import API_ID, API_HASH
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.utils.database import get_assistant, clonebotdb
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import get_assistant, clonebotdb
 from config import LOG_GROUP_ID 
 
 CLONES = set()
