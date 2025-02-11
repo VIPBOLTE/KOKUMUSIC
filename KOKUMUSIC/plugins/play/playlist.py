@@ -5,18 +5,18 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import BANNED_USERS, SERVER_PLAYLIST_LIMIT
-from BADMUSIC import Platform, app
-from BADMUSIC.utils.database import (
+from KOKUMUSIC import Platform, app
+from KOKUMUSIC.utils.database import (
     delete_playlist,
     get_playlist,
     get_playlist_names,
     save_playlist,
 )
-from BADMUSIC.utils.decorators import language, languageCB
-from BADMUSIC.utils.decorators.play import botplaylist_markup
-from BADMUSIC.utils.inline.playlist import get_playlist_markup, warning_markup
-from BADMUSIC.utils.pastebin import BADbin
-from BADMUSIC.utils.stream.stream import stream
+from KOKUMUSIC.utils.decorators import language, languageCB
+from KOKUMUSIC.utils.decorators.play import botplaylist_markup
+from KOKUMUSIC.utils.inline.playlist import get_playlist_markup, warning_markup
+from KOKUMUSIC.utils.pastebin import KOKUbin
+from KOKUMUSIC.utils.stream.stream import stream
 
 
 
@@ -44,7 +44,7 @@ async def check_playlist(client, message: Message, _):
         count += 1
         msg += f"\n\n{count}- {title[:70]}\n"
         msg += _["playlist_5"].format(duration)
-    link = await BADbin(msg)
+    link = await KOKUbin(msg)
     lines = msg.count("\n")
     if lines >= 17:
         car = os.linesep.join(msg.split(os.linesep)[:17])
