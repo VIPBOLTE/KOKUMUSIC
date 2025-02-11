@@ -181,7 +181,7 @@ async def skip(cli, message: Message, _, chat_id):
                     else config.TELEGRAM_VIDEO_URL
                 ),
                 caption=_["stream_1"].format(
-                    title, https://t.me/{config.SUPPORT_CHAT}, check[0]["dur"], user
+                    title, f"https://t.me/{config.SUPPORT_CHAT}", check[0]["dur"], user
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
