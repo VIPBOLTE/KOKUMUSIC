@@ -1,15 +1,12 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter, ChatMemberStatus, ChatType
 from pyrogram.types import Message
 
 from config import BANNED_USERS
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.utils.database import set_cmode
-from BADMUSIC.utils.decorators.admins import AdminActual
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import set_cmode
+from KOKUMUSIC.utils.decorators.admins import AdminActual
 
 ### Multi-Lang Commands
 CHANNELPLAY_COMMAND = get_command("CHANNELPLAY_COMMAND")
