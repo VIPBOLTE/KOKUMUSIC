@@ -101,8 +101,8 @@ import random
 from pyrogram import filters
 from pyrogram.types import Message
 
-from BADMUSIC import app
-from BADMUSIC.utils.database import get_assistant
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import get_assistant
 
 photo = [
     "https://envs.sh/qeq.jpg",
