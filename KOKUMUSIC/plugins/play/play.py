@@ -6,20 +6,20 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 
 import config
 from config import BANNED_USERS, lyrical
-from BADMUSIC import app, LOGGER, Platform
-from BADMUSIC.utils import seconds_to_min, time_to_seconds
-from BADMUSIC.utils.database import is_video_allowed
-from BADMUSIC.utils.decorators.play import PlayWrapper
-from BADMUSIC.utils.formatters import formats
-from BADMUSIC.utils.inline.play import (
+from KOKUMUSIC import app, LOGGER, Platform
+from KOKUMUSIC.utils import seconds_to_min, time_to_seconds
+from KOKUMUSIC.utils.database import is_video_allowed
+from KOKUMUSIC.utils.decorators.play import PlayWrapper
+from KOKUMUSIC.utils.formatters import formats
+from KOKUMUSIC.utils.inline.play import (
     livestream_markup,
     playlist_markup,
     slider_markup,
     track_markup,
 )
-from BADMUSIC.utils.inline.playlist import botplaylist_markup
-from BADMUSIC.utils.logger import play_logs
-from BADMUSIC.utils.stream.stream import stream
+from KOKUMUSIC.utils.inline.playlist import botplaylist_markup
+from KOKUMUSIC.utils.logger import play_logs
+from KOKUMUSIC.utils.stream.stream import stream
 
 
 @app.on_message(
