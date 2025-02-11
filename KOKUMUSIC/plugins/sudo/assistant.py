@@ -1,15 +1,12 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 import os
 from inspect import getfullargspec
 
 from pyrogram import filters
 from pyrogram.types import Message
 
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.utils.database import get_client
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import get_client
 
 
 @app.on_message(filters.command("setpfp", prefixes=".") & SUDOERS)
@@ -51,7 +48,7 @@ async def set_bio(client, message):
 
 @app.on_message(filters.command("setname", prefixes=".") & SUDOERS)
 async def set_name(client, message):
-    from BADMUSIC.core.userbot import assistants
+    from KOKUMUSIC.core.userbot import assistants
 
     if len(message.command) == 1:
         return await eor(message, text="Give some text to set as name.")
@@ -70,7 +67,7 @@ async def set_name(client, message):
 
 @app.on_message(filters.command("delpfp", prefixes=".") & SUDOERS)
 async def del_pfp(client, message):
-    from BADMUSIC.core.userbot import assistants
+    from KOKUMUSIC.core.userbot import assistants
 
     for num in assistants:
         client = await get_client(num)
@@ -87,7 +84,7 @@ async def del_pfp(client, message):
 
 @app.on_message(filters.command("delallpfp", prefixes=".") & SUDOERS)
 async def delall_pfp(client, message):
-    from BADMUSIC.core.userbot import assistants
+    from KOKUMUSIC.core.userbot import assistants
 
     for num in assistants:
         client = await get_client(num)
