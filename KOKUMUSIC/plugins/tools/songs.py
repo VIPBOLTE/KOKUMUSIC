@@ -6,7 +6,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from youtube_search import YoutubeSearch
 import requests
-from BADMUSIC import app
+from KOKUMUSIC import app
 
 # Define a dictionary to track the last message timestamp for each user
 user_last_message_time = {}
