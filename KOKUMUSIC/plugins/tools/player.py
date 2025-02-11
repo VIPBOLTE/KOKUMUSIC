@@ -1,13 +1,10 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 from pyrogram import filters
 from pyrogram.types import Message
 
 from config import BANNED_USERS
-from BADMUSIC import app
-from BADMUSIC.misc import db
-from BADMUSIC.utils.decorators import AdminRightsCheck
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils.decorators import AdminRightsCheck
 
 
 @app.on_message(
