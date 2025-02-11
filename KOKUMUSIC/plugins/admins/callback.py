@@ -15,7 +15,7 @@ from config import (
     lyrical,
 )
 from KOKUMUSIC import Platform, app
-from KOKUMUSIC.core.call import BAD
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import SUDOERS, db
 from KOKUMUSIC.utils import seconds_to_min, time_to_seconds
 from KOKUMUSIC.utils.channelplay import get_channeplayCB
