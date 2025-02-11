@@ -9,7 +9,7 @@ from config import BANNED_USERS
 from strings import get_command
 from KOKUMUSIC import app
 from KOKUMUSIC.misc import db
-from KOKUMUSIC.utils import BADbin, get_channeplayCB, seconds_to_min
+from KOKUMUSIC.utils import KOKUbin, get_channeplayCB, seconds_to_min
 from KOKUMUSIC.utils.database import get_cmode, is_active_chat, is_music_playing
 from KOKUMUSIC.utils.decorators.language import language, languageCB
 from KOKUMUSIC.utils.inline import queue_back_markup, queue_markup
@@ -198,7 +198,7 @@ async def queued_tracks(client, CallbackQuery: CallbackQuery, _):
         if "ǫᴜᴇᴜᴇᴅ" in msg:
             msg = msg.replace("ǫᴜᴇᴜᴇᴅ", "Queued")
 
-        link = await BADbin(msg)
+        link = await KOKUbin(msg)
         await CallbackQuery.edit_message_text(
             _["queue_3"].format(link), reply_markup=buttons
         )
@@ -217,7 +217,7 @@ async def queued_tracks(client, CallbackQuery: CallbackQuery, _):
             if "ǫᴜᴇᴜᴇᴅ" in msg:
                 msg = msg.replace("ǫᴜᴇᴜᴇᴅ", "Queued")
 
-            link = await BADbin(msg)
+            link = await KOKUbin(msg)
             await asyncio.sleep(1)
             return await CallbackQuery.edit_message_text(
                 _["queue_3"].format(link), reply_markup=buttons
