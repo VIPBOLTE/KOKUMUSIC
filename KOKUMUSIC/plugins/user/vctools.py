@@ -12,7 +12,7 @@ from pyrogram.raw.functions.phone import (
     GetGroupParticipants,
 )
 from pyrogram.types import Message
-from KOKUMUSIC.utils.bad_ban import admin_filter
+from KOKUMUSIC.utils.KOKU_BAN import admin_filter
 from KOKUMUSIC.utils.database import get_assistant
 
 
