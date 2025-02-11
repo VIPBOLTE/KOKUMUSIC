@@ -3,9 +3,9 @@ from pyrogram.types import Message
 
 import config
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.utils.database import (
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import (
     add_private_chat,
     get_private_served_chats,
     is_served_private_chat,
