@@ -6,7 +6,7 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS, PING_IMG_URL
 from KOKUMUSIC import app
-from KOKUMUSIC.core.call import BAD
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.utils import bot_sys_stats
 from KOKUMUSIC.utils.decorators.language import language
 from KOKUMUSIC.utils.inline import support_group_markup
@@ -20,7 +20,7 @@ async def ping_com(client, message: Message, _):
         caption=_["ping_1"].format(app.mention),
     )
     start = datetime.now()
-    pytgping = await BAD.ping()
+    pytgping = await KOKU.ping()
     UP, CPU, RAM, DISK = await bot_sys_stats()
     resp = (datetime.now() - start).microseconds / 1000
     await response.edit_text(
