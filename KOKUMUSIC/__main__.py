@@ -6,7 +6,7 @@ from pyrogram import idle
 import config
 from config import BANNED_USERS
 from KOKUMUSIC import HELPABLE, LOGGER, app, userbot
-from KOKUMUSIC.core.call import KOKU
+from KOKUMUSIC.core.call import KOKU  # Ensure KOKU is initialized correctly
 from KOKUMUSIC.plugins import ALL_MODULES
 from KOKUMUSIC.utils.database import get_banned_users, get_gbanned
 
@@ -37,17 +37,32 @@ async def init():
             BANNED_USERS.add(user_id)
     except Exception:
         pass
+
+    # Start Pyrogram client
     await app.start()
+    LOGGER("KOKUMUSIC").info("Pyrogram client started!")
+
+    # Import all modules
     for all_module in ALL_MODULES:
         imported_module = importlib.import_module(all_module)
         if hasattr(imported_module, "__MODULE__") and imported_module.__MODULE__:
             if hasattr(imported_module, "__HELP__") and imported_module.__HELP__:
                 HELPABLE[imported_module.__MODULE__.lower()] = imported_module
     LOGGER("KOKUMUSIC.plugins").info("Successfully Imported All Modules ")
+
+    # Start userbot
     await userbot.start()
+    LOGGER("KOKUMUSIC").info("Userbot started!")
+
+    # Start pytgcalls
     await KOKU.start()
+    LOGGER("KOKUMUSIC").info("PyTgCalls started!")
+
+    # Run decorators (if any)
     await KOKU.decorators()
     LOGGER("KOKUMUSIC").info("KOKUMUSIC STARTED SUCCESSFULLY 🕊️")
+
+    # Idle
     await idle()
 
 
