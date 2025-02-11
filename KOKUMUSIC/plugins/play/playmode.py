@@ -1,15 +1,12 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
 from config import BANNED_USERS
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.utils.database import get_playmode, get_playtype, is_nonadmin_chat
-from BADMUSIC.utils.decorators import language
-from BADMUSIC.utils.inline.settings import playmode_users_markup
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import get_playmode, get_playtype, is_nonadmin_chat
+from KOKUMUSIC.utils.decorators import language
+from KOKUMUSIC.utils.inline.settings import playmode_users_markup
 
 ### Commands
 PLAYMODE_COMMAND = get_command("PLAYMODE_COMMAND")
