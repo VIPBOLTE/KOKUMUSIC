@@ -1,15 +1,12 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 from pykeyboard import InlineKeyboard
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, Message
 
 from config import BANNED_USERS
 from strings import get_command, get_string, languages_present
-from BADMUSIC import app
-from BADMUSIC.utils.database import get_lang, set_lang
-from BADMUSIC.utils.decorators import ActualAdminCB, language, languageCB
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import get_lang, set_lang
+from KOKUMUSIC.utils.decorators import ActualAdminCB, language, languageCB
 
 # Languages Available
 
