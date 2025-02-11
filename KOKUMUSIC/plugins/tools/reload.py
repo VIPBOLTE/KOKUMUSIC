@@ -1,6 +1,3 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 import asyncio
 import logging
 
@@ -10,12 +7,12 @@ from pyrogram.types import CallbackQuery, Message
 
 from config import BANNED_USERS, adminlist, lyrical
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.core.call import BAD
-from BADMUSIC.misc import db
-from BADMUSIC.utils.database import get_authuser_names, get_cmode
-from BADMUSIC.utils.decorators import ActualAdminCB, AdminActual, language
-from BADMUSIC.utils.formatters import alpha_to_int
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import KOKU
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils.database import get_authuser_names, get_cmode
+from KOKUMUSIC.utils.decorators import ActualAdminCB, AdminActual, language
+from KOKUMUSIC.utils.formatters import alpha_to_int
 
 ### Multi-Lang Commands
 RELOAD_COMMAND = get_command("RELOAD_COMMAND")
@@ -52,7 +49,7 @@ async def restartbot(client, message: Message, _):
     await asyncio.sleep(1)
     try:
         db[message.chat.id] = []
-        await BAD.stop_stream(message.chat.id)
+        await KOKU.stop_stream(message.chat.id)
     except:
         pass
     chat_id = await get_cmode(message.chat.id)
@@ -63,7 +60,7 @@ async def restartbot(client, message: Message, _):
             pass
         try:
             db[chat_id] = []
-            await BAD.stop_stream(chat_id)
+            await KOKU.stop_stream(chat_id)
         except:
             pass
     return await mystic.edit_text("sᴜᴄᴇssғᴜʟʟʏ ʀᴇsᴛᴀʀᴛᴇᴅ. \nTʀʏ ᴘʟᴀʏɪɴɢ ɴᴏᴡ..")
