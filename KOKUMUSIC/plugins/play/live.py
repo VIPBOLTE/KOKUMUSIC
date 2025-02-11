@@ -1,13 +1,10 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 from pyrogram import filters
 
 from config import BANNED_USERS
-from BADMUSIC import Platform, app
-from BADMUSIC.utils.channelplay import get_channeplayCB
-from BADMUSIC.utils.decorators.language import languageCB
-from BADMUSIC.utils.stream.stream import stream
+from KOKUMUSIC import Platform, app
+from KOKUMUSIC.utils.channelplay import get_channeplayCB
+from KOKUMUSIC.utils.decorators.language import languageCB
+from KOKUMUSIC.utils.stream.stream import stream
 
 
 @app.on_callback_query(filters.regex("LiveStream") & ~BANNED_USERS)
