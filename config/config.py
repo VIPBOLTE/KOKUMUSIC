@@ -296,13 +296,6 @@ if SUPPORT_CHANNEL:
         )
 
 
-if SUPPORT_GROUP:
-    if not re.match("(?:http|https)://", SUPPORT_GROUP):
-        print(
-            "[ERROR] - Your SUPPORT_GROUP url is wrong. Please ensure that it starts with https://"
-        )
-
-
 if UPSTREAM_REPO:
     if not re.match("(?:http|https)://", UPSTREAM_REPO):
         print(
