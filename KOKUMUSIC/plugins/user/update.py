@@ -15,10 +15,10 @@ from pyrogram import filters, Client
 import config
 from config import OWNER_ID
 from strings import get_command
-from BADMUSIC.misc import SUDOERS as SUDO_USER
-from BADMUSIC import app
-from BADMUSIC.misc import HAPP, SUDOERS, XCB
-from BADMUSIC.utils.database import (
+from KOKUMUSIC.misc import SUDOERS as SUDO_USER
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import HAPP, SUDOERS, XCB
+from KOKUMUSIC.utils.database import (
     get_active_chats,
     remove_active_chat,
     remove_active_video_chat,
