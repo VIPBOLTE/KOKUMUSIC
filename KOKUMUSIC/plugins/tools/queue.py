@@ -1,6 +1,3 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
 import asyncio
 
 from pyrogram import filters
@@ -10,12 +7,12 @@ from pyrogram.types import CallbackQuery, InputMediaPhoto, Message
 import config
 from config import BANNED_USERS
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.misc import db
-from BADMUSIC.utils import BADbin, get_channeplayCB, seconds_to_min
-from BADMUSIC.utils.database import get_cmode, is_active_chat, is_music_playing
-from BADMUSIC.utils.decorators.language import language, languageCB
-from BADMUSIC.utils.inline import queue_back_markup, queue_markup
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils import BADbin, get_channeplayCB, seconds_to_min
+from KOKUMUSIC.utils.database import get_cmode, is_active_chat, is_music_playing
+from KOKUMUSIC.utils.decorators.language import language, languageCB
+from KOKUMUSIC.utils.inline import queue_back_markup, queue_markup
 
 ###Commands
 QUEUE_COMMAND = get_command("QUEUE_COMMAND")
