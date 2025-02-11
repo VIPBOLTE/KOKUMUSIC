@@ -1,26 +1,22 @@
-# Copyright (C) 2024 by Badhacker98@Github, < https://github.com/Badhacker98 >.
-# Owner https://t.me/ll_BAD_MUNDA_ll
-
-
 import asyncio
 
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup
 
 from config import BANNED_USERS
-from BADMUSIC import app
-from BADMUSIC.utils.database import (
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import (
     get_global_tops,
     get_particulars,
     get_userss,
 )
-from BADMUSIC.utils.decorators import languageCB
-from BADMUSIC.utils.inline.playlist import (
+from KOKUMUSIC.utils.decorators import languageCB
+from KOKUMUSIC.utils.inline.playlist import (
     botplaylist_markup,
     failed_top_markup,
     top_play_markup,
 )
-from BADMUSIC.utils.stream.stream import stream
+from KOKUMUSIC.utils.stream.stream import stream
 
 loop = asyncio.get_running_loop()
 
