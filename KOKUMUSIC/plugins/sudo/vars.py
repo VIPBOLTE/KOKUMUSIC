@@ -4,10 +4,10 @@ from pyrogram import filters
 
 import config
 from strings import get_command
-from BADMUSIC import app
-from BADMUSIC.misc import SUDOERS
-from BADMUSIC.utils.database.memorydatabase import get_video_limit
-from BADMUSIC.utils.formatters import convert_bytes
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database.memorydatabase import get_video_limit
+from KOKUMUSIC.utils.formatters import convert_bytes
 
 VARS_COMMAND = get_command("VARS_COMMAND")
 
