@@ -1,3 +1,4 @@
+
 import glob
 import importlib
 import logging
@@ -12,7 +13,7 @@ from KOKUMUSIC import LOGGER
 
 logger = LOGGER(__name__)
 
-# Clean up existing directories
+
 if EXTRA_PLUGINS_FOLDER in os.listdir():
     shutil.rmtree(EXTRA_PLUGINS_FOLDER)
 
@@ -20,12 +21,12 @@ if "utils" in os.listdir():
     shutil.rmtree("utils")
 
 ROOT_DIR = abspath(join(dirname(__file__), "..", ".."))
+
 EXTERNAL_REPO_PATH = join(ROOT_DIR, EXTRA_PLUGINS_FOLDER)
 
 extra_plugins_enabled = EXTRA_PLUGINS.lower() == "true"
 
 if extra_plugins_enabled:
-    # Clone the external repository if it doesn't exist
     if not os.path.exists(EXTERNAL_REPO_PATH):
         with open(os.devnull, "w") as devnull:
             clone_result = subprocess.run(
@@ -38,7 +39,6 @@ if extra_plugins_enabled:
                     f"Error cloning external plugins repository: {clone_result.stderr.decode()}"
                 )
 
-    # Move the utils directory from the external repository to the root directory
     utils_source_path = join(EXTERNAL_REPO_PATH, "utils")
     utils_target_path = join(ROOT_DIR, "utils")
     if os.path.isdir(utils_source_path):
@@ -55,12 +55,9 @@ if extra_plugins_enabled:
                     if not os.path.exists(target_file):
                         os.rename(source_file, target_file)
 
-    # Add the external repository's plugins directory to sys.path
-    external_plugins_path = join(EXTERNAL_REPO_PATH, "plugins")
-    if os.path.isdir(external_plugins_path):
-        sys.path.append(external_plugins_path)
+    if os.path.isdir(utils_target_path):
+        sys.path.append(utils_target_path)
 
-    # Install requirements from the external repository
     requirements_path = join(EXTERNAL_REPO_PATH, "requirements.txt")
     if os.path.isfile(requirements_path):
         with open(os.devnull, "w") as devnull:
@@ -105,13 +102,5 @@ def __list_all_modules():
     return all_modules
 
 
-# Dynamically import all modules
 ALL_MODULES = sorted(__list_all_modules())
-for module_name in ALL_MODULES:
-    try:
-        importlib.import_module(module_name)
-        logger.info(f"Successfully imported module: {module_name}")
-    except Exception as e:
-        logger.error(f"Failed to import module {module_name}: {e}")
-
 __all__ = ALL_MODULES + ["ALL_MODULES"]
