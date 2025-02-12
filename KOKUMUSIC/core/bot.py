@@ -58,11 +58,11 @@ class KOKUBOT(Client):
              [
                     InlineKeyboardButton(
                         text="๏ ᴏᴡɴᴇʀ ๏",
-                        url=f"https://t.me/II_BAD_BABY_II",
+                        url=f"https://t.me/BLACKIE_DEV",
                     ),
                     InlineKeyboardButton(
                         text="๏ ᴜᴘᴅᴀᴛᴇ ๏",
-                        url=f"https://t.me/HEROKUBIN_01",
+                        url=f"https://t.me/{config.SUPPORT_CHANNEL}",
                     )
               ],
                 [
