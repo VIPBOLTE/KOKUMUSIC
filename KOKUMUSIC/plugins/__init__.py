@@ -78,7 +78,7 @@ def __list_all_modules():
     main_mod_paths = glob.glob(join(main_repo_plugins_dir, "*.py"))
     main_mod_paths += glob.glob(join(main_repo_plugins_dir, "*/*.py"))
     main_modules = [
-        (f.replace(main_repo_plugins_dir, "KOKUMUSIC.plugins").replace(os.sep, ".")[:-3]
+        f.replace(main_repo_plugins_dir, "KOKUMUSIC.plugins").replace(os.sep, ".")[:-3]
         for f in main_mod_paths
         if isfile(f) and f.endswith(".py") and not f.endswith("__init__.py")
     ]
@@ -90,21 +90,21 @@ def __list_all_modules():
         plugins_init_path = join(external_plugins_dir, "__init__.py")
         if os.path.isfile(plugins_init_path):
             try:
-                # Add the external repo path to sys.path to allow module import
                 sys.path.append(EXTERNAL_REPO_PATH)
                 from plugins import PLUGINS_MODULES
-                # Construct the module paths based on PLUGINS_MODULES
-                external_modules = [f"{EXTRA_PLUGINS_FOLDER}.plugins.{mod}" for mod in PLUGINS_MODULES]
+                external_modules = [
+                    f"{EXTRA_PLUGINS_FOLDER}.plugins.{mod}"
+                    for mod in PLUGINS_MODULES
+                ]
                 all_modules.extend(external_modules)
                 logger.info(f"Successfully loaded external plugins from PLUGINS_MODULES: {PLUGINS_MODULES}")
             except ImportError as e:
                 logger.error(f"Failed to import PLUGINS_MODULES: {e}")
-                # Fallback to globbing if PLUGINS_MODULES import fails
-                logger.info("Falling back to globbing external plugins directory")
+                # Fallback to globbing
                 external_mod_paths = glob.glob(join(external_plugins_dir, "*.py"))
                 external_mod_paths += glob.glob(join(external_plugins_dir, "*/*.py"))
                 external_modules = [
-                    (f.replace(EXTERNAL_REPO_PATH, EXTRA_PLUGINS_FOLDER).replace(os.sep, ".")[:-3]
+                    f.replace(EXTERNAL_REPO_PATH, EXTRA_PLUGINS_FOLDER).replace(os.sep, ".")[:-3]
                     for f in external_mod_paths
                     if isfile(f) and f.endswith(".py") and not f.endswith("__init__.py")
                 ]
@@ -112,11 +112,11 @@ def __list_all_modules():
             except Exception as e:
                 logger.error(f"Unexpected error loading external plugins: {e}")
         else:
-            # No __init__.py found, use glob to find plugins
+            # No __init__.py found
             external_mod_paths = glob.glob(join(external_plugins_dir, "*.py"))
             external_mod_paths += glob.glob(join(external_plugins_dir, "*/*.py"))
             external_modules = [
-                (f.replace(EXTERNAL_REPO_PATH, EXTRA_PLUGINS_FOLDER).replace(os.sep, ".")[:-3]
+                f.replace(EXTERNAL_REPO_PATH, EXTRA_PLUGINS_FOLDER).replace(os.sep, ".")[:-3]
                 for f in external_mod_paths
                 if isfile(f) and f.endswith(".py") and not f.endswith("__init__.py")
             ]
