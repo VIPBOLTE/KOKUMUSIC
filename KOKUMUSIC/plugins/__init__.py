@@ -63,6 +63,9 @@ if extra_plugins_enabled:
     if os.path.isdir(utils_target_path):
         sys.path.append(utils_target_path)
 
+    # Add external plugin repo path to sys.path to allow imports
+    sys.path.append(EXTERNAL_REPO_PATH)
+
     # Install requirements from "requirements.txt" in external repo if it exists
     requirements_path = join(EXTERNAL_REPO_PATH, "requirements.txt")
     if os.path.isfile(requirements_path):
@@ -114,7 +117,8 @@ def __list_all_modules():
 ALL_MODULES = sorted(__list_all_modules())
 
 # Import the PLUGINS_MODULES from your plugin initialization file
-from plugins import PLUGINS_MODULES  # Update the path as per your repo structure
+# PLUGINS_MODULES should be located inside the external repo's "plugins" directory
+from plugins import PLUGINS_MODULES  # Update the path to your external repo init file
 
 # Combine the modules from main repo and external plugins
 ALL_MODULES += PLUGINS_MODULES
