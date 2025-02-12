@@ -1,4 +1,3 @@
-
 import glob
 import importlib
 import logging
@@ -13,7 +12,7 @@ from KOKUMUSIC import LOGGER
 
 logger = LOGGER(__name__)
 
-
+# Remove existing extra plugin folders if they exist
 if EXTRA_PLUGINS_FOLDER in os.listdir():
     shutil.rmtree(EXTRA_PLUGINS_FOLDER)
 
@@ -21,11 +20,11 @@ if "utils" in os.listdir():
     shutil.rmtree("utils")
 
 ROOT_DIR = abspath(join(dirname(__file__), "..", ".."))
-
 EXTERNAL_REPO_PATH = join(ROOT_DIR, EXTRA_PLUGINS_FOLDER)
 
 extra_plugins_enabled = EXTRA_PLUGINS.lower() == "true"
 
+# Clone the external plugins repository if enabled
 if extra_plugins_enabled:
     if not os.path.exists(EXTERNAL_REPO_PATH):
         with open(os.devnull, "w") as devnull:
@@ -71,7 +70,7 @@ if extra_plugins_enabled:
                     f"Error installing requirements for external plugins: {install_result.stderr.decode()}"
                 )
 
-
+# Function to list all modules including external plugins
 def __list_all_modules():
     main_repo_plugins_dir = dirname(__file__)
     work_dirs = [main_repo_plugins_dir]
@@ -101,6 +100,29 @@ def __list_all_modules():
 
     return all_modules
 
-
+# Get sorted list of all modules
 ALL_MODULES = sorted(__list_all_modules())
+
+# Ensure that PLUGINS_MODULES from the external repo is included
+if extra_plugins_enabled:
+    external_plugins_modules = [
+        module for module in ALL_MODULES if module.startswith(EXTRA_PLUGINS_FOLDER)
+    ]
+    ALL_MODULES.extend(external_plugins_modules)
+
+# Add PLUGINS_MODULES to the __all__ list to export all modules
 __all__ = ALL_MODULES + ["ALL_MODULES"]
+
+# Dynamically import PLUGINS_MODULES from the external repo (KOKUMUSIC.plugins)
+if extra_plugins_enabled:
+    try:
+        # Import PLUGINS_MODULES from KOKUMUSIC.plugins.__init__ in the external repo
+        plugins_module_name = f"{EXTRA_PLUGINS_FOLDER}.KOKUMUSIC.plugins"
+        plugins_module = importlib.import_module(plugins_module_name)
+        # Access PLUGINS_MODULES within that module
+        plugins_module.PLUGINS_MODULES
+        logger.info(f"Successfully imported PLUGINS_MODULES from {plugins_module_name}")
+    except ModuleNotFoundError as e:
+        logger.error(f"Error importing PLUGINS_MODULES from {plugins_module_name}: {e}")
+    except AttributeError as e:
+        logger.error(f"PLUGINS_MODULES not found in {plugins_module_name}: {e}")
