@@ -1,6 +1,5 @@
 import glob
 import importlib
-import logging
 import os
 import shutil
 import subprocess
@@ -12,7 +11,7 @@ from KOKUMUSIC import LOGGER
 
 logger = LOGGER(__name__)
 
-# Remove existing extra plugin folders if they exist
+# Cleanup previous installations
 if EXTRA_PLUGINS_FOLDER in os.listdir():
     shutil.rmtree(EXTRA_PLUGINS_FOLDER)
 
@@ -21,108 +20,83 @@ if "utils" in os.listdir():
 
 ROOT_DIR = abspath(join(dirname(__file__), "..", ".."))
 EXTERNAL_REPO_PATH = join(ROOT_DIR, EXTRA_PLUGINS_FOLDER)
+sys.path.insert(0, ROOT_DIR)
 
 extra_plugins_enabled = EXTRA_PLUGINS.lower() == "true"
 
-# Clone the external plugins repository if enabled
+# Clone external repository
 if extra_plugins_enabled:
     if not os.path.exists(EXTERNAL_REPO_PATH):
-        with open(os.devnull, "w") as devnull:
-            clone_result = subprocess.run(
-                ["git", "clone", EXTRA_PLUGINS_REPO, EXTERNAL_REPO_PATH],
-                stdout=devnull,
-                stderr=subprocess.PIPE,
-            )
-            if clone_result.returncode != 0:
-                logger.error(
-                    f"Error cloning external plugins repository: {clone_result.stderr.decode()}"
-                )
+        result = subprocess.run(
+            ["git", "clone", EXTRA_PLUGINS_REPO, EXTERNAL_REPO_PATH],
+            capture_output=True,
+            text=True
+        )
+        if result.returncode != 0:
+            logger.error(f"Clone failed: {result.stderr}")
 
-    utils_source_path = join(EXTERNAL_REPO_PATH, "utils")
-    utils_target_path = join(ROOT_DIR, "utils")
-    if os.path.isdir(utils_source_path):
-        if not os.path.exists(utils_target_path):
-            os.rename(utils_source_path, utils_target_path)
-        else:
-            for root, dirs, files in os.walk(utils_source_path):
-                relative_path = os.path.relpath(root, utils_source_path)
-                target_dir = os.path.join(utils_target_path, relative_path)
-                os.makedirs(target_dir, exist_ok=True)
-                for file in files:
-                    source_file = os.path.join(root, file)
-                    target_file = os.path.join(target_dir, file)
-                    if not os.path.exists(target_file):
-                        os.rename(source_file, target_file)
+    # Handle utils directory
+    utils_src = join(EXTERNAL_REPO_PATH, "utils")
+    utils_dest = join(ROOT_DIR, "utils")
+    if os.path.exists(utils_src):
+        shutil.rmtree(utils_dest, ignore_errors=True)
+        shutil.copytree(utils_src, utils_dest)
+        sys.path.append(utils_dest)
 
-    if os.path.isdir(utils_target_path):
-        sys.path.append(utils_target_path)
+    # Install requirements
+    req_file = join(EXTERNAL_REPO_PATH, "requirements.txt")
+    if os.path.isfile(req_file):
+        result = subprocess.run(
+            ["pip", "install", "-r", req_file],
+            capture_output=True,
+            text=True
+        )
+        if result.returncode != 0:
+            logger.error(f"Requirements error: {result.stderr}")
 
-    requirements_path = join(EXTERNAL_REPO_PATH, "requirements.txt")
-    if os.path.isfile(requirements_path):
-        with open(os.devnull, "w") as devnull:
-            install_result = subprocess.run(
-                ["pip", "install", "-r", requirements_path],
-                stdout=devnull,
-                stderr=subprocess.PIPE,
-            )
-            if install_result.returncode != 0:
-                logger.error(
-                    f"Error installing requirements for external plugins: {install_result.stderr.decode()}"
-                )
-
-# Function to list all modules including external plugins
 def __list_all_modules():
-    main_repo_plugins_dir = dirname(__file__)
-    work_dirs = [main_repo_plugins_dir]
-
+    local_plugins_dir = join(ROOT_DIR, "KOKUMUSIC", "plugins")
+    external_plugins_dir = join(EXTERNAL_REPO_PATH, "plugins")
+    
+    search_dirs = [local_plugins_dir]
     if extra_plugins_enabled:
-        logger.info("Loading extra plugins...")
-        work_dirs.append(join(EXTERNAL_REPO_PATH, "plugins"))
+        search_dirs.append(external_plugins_dir)
 
     all_modules = []
+    
+    for plugins_dir in search_dirs:
+        if not os.path.exists(plugins_dir):
+            continue
+            
+        # Find all Python files recursively
+        for py_path in glob.glob(join(plugins_dir, "**/*.py"), recursive=True):
+            if "__init__.py" in py_path:
+                continue
 
-    for work_dir in work_dirs:
-        mod_paths = glob.glob(join(work_dir, "*.py"))
-        mod_paths += glob.glob(join(work_dir, "*/*.py"))
+            # Convert path to module format
+            rel_path = os.path.relpath(py_path, plugins_dir)
+            module_name = rel_path.replace(os.sep, ".")[:-3]  # Remove .py
+            
+            if plugins_dir == local_plugins_dir:
+                full_module = f"KOKUMUSIC.plugins.{module_name}"
+            else:
+                full_module = f"{EXTRA_PLUGINS_FOLDER}.plugins.{module_name}"
+            
+            all_modules.append(full_module)
 
-        modules = [
-            (
-                (
-                    (f.replace(main_repo_plugins_dir, "KOKUMUSIC.plugins")).replace(
-                        EXTERNAL_REPO_PATH, EXTRA_PLUGINS_FOLDER
-                    )
-                ).replace(os.sep, ".")
-            )[:-3]
-            for f in mod_paths
-            if isfile(f) and f.endswith(".py") and not f.endswith("__init__.py")
-        ]
-        all_modules.extend(modules)
+    return sorted(all_modules)
 
-    return all_modules
+ALL_MODULES = __list_all_modules()
 
-# Get sorted list of all modules
-ALL_MODULES = sorted(__list_all_modules())
-
-# Ensure that PLUGINS_MODULES from the external repo is included
-if extra_plugins_enabled:
-    external_plugins_modules = [
-        module for module in ALL_MODULES if module.startswith(EXTRA_PLUGINS_FOLDER)
-    ]
-    ALL_MODULES.extend(external_plugins_modules)
-
-# Add PLUGINS_MODULES to the __all__ list to export all modules
-__all__ = ALL_MODULES + ["ALL_MODULES"]
-
-# Dynamically import PLUGINS_MODULES from the external repo (KOKUMUSIC.plugins)
+# Dynamic import from external plugins' __init__.py
 if extra_plugins_enabled:
     try:
-        # Import PLUGINS_MODULES from KOKUMUSIC.plugins.__init__ in the external repo
-        plugins_module_name = f"{EXTRA_PLUGINS_FOLDER}.KOKUMUSIC.plugins"
-        plugins_module = importlib.import_module(plugins_module_name)
-        # Access PLUGINS_MODULES within that module
-        plugins_module.PLUGINS_MODULES
-        logger.info(f"Successfully imported PLUGINS_MODULES from {plugins_module_name}")
-    except ModuleNotFoundError as e:
-        logger.error(f"Error importing PLUGINS_MODULES from {plugins_module_name}: {e}")
-    except AttributeError as e:
-        logger.error(f"PLUGINS_MODULES not found in {plugins_module_name}: {e}")
+        # Import from external plugins directory
+        external_plugins = importlib.import_module(f"{EXTRA_PLUGINS_FOLDER}.plugins")
+        if hasattr(external_plugins, "PLUGINS_MODULES"):
+            ALL_MODULES.extend(external_plugins.PLUGINS_MODULES)
+            logger.info(f"Loaded {len(external_plugins.PLUGINS_MODULES)} external plugins")
+    except Exception as e:
+        logger.error(f"External plugins init error: {str(e)}")
+
+__all__ = ALL_MODULES + ["ALL_MODULES"]
