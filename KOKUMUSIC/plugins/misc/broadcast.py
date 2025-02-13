@@ -9,9 +9,9 @@ from pyrogram.raw import types
 import config
 from config import OWNER_ID, adminlist, chatstats, clean, userstats
 from strings import get_command
-from ChampuMusic import app
-from ChampuMusic.utils.cleanmode import protected_messages
-from ChampuMusic.utils.database import (
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.cleanmode import protected_messages
+from KOKUMUSIC.utils.database import (
     get_active_chats,
     get_authuser_names,
     get_particular_top,
@@ -24,8 +24,8 @@ from ChampuMusic.utils.database import (
     update_particular_top,
     update_user_top,
 )
-from ChampuMusic.utils.decorators.language import language
-from ChampuMusic.utils.formatters import alpha_to_int
+from KOKUMUSIC.utils.decorators.language import language
+from KOKUMUSIC.utils.formatters import alpha_to_int
 
 BROADCAST_COMMAND = get_command("BROADCAST_COMMAND")
 AUTO_DELETE = config.CLEANMODE_DELETE_MINS
