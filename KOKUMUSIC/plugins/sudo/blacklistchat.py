@@ -3,7 +3,7 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS
 from strings import get_command
-from ChampuMusic import app
+from KOKUMUSIC import app
 from KOKUMUSIC.misc import SUDOERS
 from KOKUMUSIC.utils.database import blacklist_chat, blacklisted_chats, whitelist_chat
 from KOKUMUSIC.utils.decorators.language import language
