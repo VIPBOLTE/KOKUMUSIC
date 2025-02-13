@@ -15,15 +15,15 @@ from pyrogram import filters
 
 import config
 from strings import get_command
-from ChampuMusic import app
-from ChampuMusic.misc import HAPP, SUDOERS, XCB
-from ChampuMusic.utils.database import (
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import HAPP, SUDOERS, XCB
+from KOKUMUSIC.utils.database import (
     get_active_chats,
     remove_active_chat,
     remove_active_video_chat,
 )
-from ChampuMusic.utils.decorators.language import language
-from ChampuMusic.utils.pastebin import Champubin
+from KOKUMUSIC.utils.decorators.language import language
+from KOKUMUSIC.utils.pastebin import Champubin
 
 # Commands
 GETLOG_COMMAND = get_command("GETLOG_COMMAND")
