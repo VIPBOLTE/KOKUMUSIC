@@ -4,11 +4,11 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from config import BANNED_USERS, PING_IMG_URL
-from ChampuMusic import app
-from ChampuMusic.core.call import Champu
-from ChampuMusic.utils import bot_sys_stats
-from ChampuMusic.utils.decorators.language import language
-from ChampuMusic.utils.inline import support_group_markup
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.utils import bot_sys_stats
+from KOKUMUSIC.utils.decorators.language import language
+from KOKUMUSIC.utils.inline import support_group_markup
 
 
 @app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
