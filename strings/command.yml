@@ -1,4 +1,3 @@
-
 # Commands in Every Language
 
 # Bot Commands
@@ -25,7 +24,7 @@ ADDPLAYLIST_COMMAND : ["addplaylist"]
 
 # Tools
 QUEUE_COMMAND : ["queue","cqueue", "songlist"]
-SONG_COMMAND : ["song", "video"]
+SONG_COMMAND : ["song"]
 LYRICS_COMMAND : ["lyrics"]
 
 
