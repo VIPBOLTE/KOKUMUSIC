@@ -7,12 +7,12 @@ from pyrogram.types import CallbackQuery, InputMediaPhoto, Message
 import config
 from config import BANNED_USERS
 from strings import get_command
-from ChampuMusic import app
-from ChampuMusic.misc import db
-from ChampuMusic.utils import Champubin, get_channeplayCB, seconds_to_min
-from ChampuMusic.utils.database import get_cmode, is_active_chat, is_music_playing
-from ChampuMusic.utils.decorators.language import language, languageCB
-from ChampuMusic.utils.inline import queue_back_markup, queue_markup
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils import Champubin, get_channeplayCB, seconds_to_min
+from KOKUMUSIC.utils.database import get_cmode, is_active_chat, is_music_playing
+from KOKUMUSIC.utils.decorators.language import language, languageCB
+from KOKUMUSIC.utils.inline import queue_back_markup, queue_markup
 
 ###Commands
 QUEUE_COMMAND = get_command("QUEUE_COMMAND")
