@@ -4,14 +4,14 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 import config
 from config import BANNED_USERS
 from strings import get_command
-from ChampuMusic import YouTube, app
-from ChampuMusic.core.call import Champu
-from ChampuMusic.misc import db
-from ChampuMusic.utils.database import get_loop
-from ChampuMusic.utils.decorators import AdminRightsCheck
-from ChampuMusic.utils.inline.play import stream_markup, telegram_markup
-from ChampuMusic.utils.stream.autoclear import auto_clean
-from ChampuMusic.utils.thumbnails import get_thumb
+from KOKUMUSIC import YouTube, app
+from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils.database import get_loop
+from KOKUMUSIC.utils.decorators import AdminRightsCheck
+from KOKUMUSIC.utils.inline.play import stream_markup, telegram_markup
+from KOKUMUSIC.utils.stream.autoclear import auto_clean
+from KOKUMUSIC.utils.thumbnails import get_thumb
 
 # Commands
 SKIP_COMMAND = get_command("SKIP_COMMAND")
