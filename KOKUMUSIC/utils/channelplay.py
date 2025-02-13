@@ -1,5 +1,5 @@
-from ChampuMusic import app
-from ChampuMusic.utils.database import get_cmode
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import get_cmode
 
 
 async def get_channeplayCB(_, command, CallbackQuery):
