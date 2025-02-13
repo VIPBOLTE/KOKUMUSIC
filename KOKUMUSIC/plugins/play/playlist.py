@@ -13,14 +13,14 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
 
 from config import BANNED_USERS, SERVER_PLAYLIST_LIMIT
-from ChampuMusic import Carbon, app, EMOJIS
-from ChampuMusic.utils.decorators.language import language, languageCB
-from ChampuMusic.utils.inline.playlist import (
+from KOKUMUSIC import Carbon, app, EMOJIS
+from KOKUMUSIC.utils.decorators.language import language, languageCB
+from KOKUMUSIC.utils.inline.playlist import (
     botplaylist_markup,
     get_playlist_markup,
     warning_markup,
 )
-from ChampuMusic.utils.stream.stream import stream
+from KOKUMUSIC.utils.stream.stream import stream
 
 # Define a dictionary to track the last message timestamp for each user
 user_last_message_time = {}
@@ -28,7 +28,7 @@ user_command_count = {}
 # Define the threshold for command spamming (e.g., 20 commands within 60 seconds)
 SPAM_THRESHOLD = 2
 SPAM_WINDOW_SECONDS = 5
-from ChampuMusic.core.mongo import mongodb
+from KOKUMUSIC.core.mongo import mongodb
 
 playlistdb = mongodb.playlist
 playlist = []
