@@ -2,9 +2,9 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from config import BANNED_USERS
-from ChampuMusic import app
-from ChampuMusic.misc import db
-from ChampuMusic.utils.decorators import AdminRightsCheck
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils.decorators import AdminRightsCheck
 
 
 @app.on_message(
