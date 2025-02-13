@@ -1,75 +1,78 @@
 import asyncio
 from datetime import datetime
-
 from pyrogram.enums import ChatType
-
 import config
 from KOKUMUSIC import app
 from KOKUMUSIC.core.call import KOKU, autoend
 from KOKUMUSIC.utils.database import get_client, is_active_chat, is_autoend
 
-
+# Improved auto leave function
 async def auto_leave():
     if config.AUTO_LEAVING_ASSISTANT == str(True):
-        while not await asyncio.sleep(config.AUTO_LEAVE_ASSISTANT_TIME):
+        while True:
+            await asyncio.sleep(config.AUTO_LEAVE_ASSISTANT_TIME)
             from KOKUMUSIC.core.userbot import assistants
-
+            left = 0
             for num in assistants:
                 client = await get_client(num)
-                left = 0
                 try:
-                    async for i in client.get_dialogs():
-                        chat_type = i.chat.type
-                        if chat_type in [
-                            ChatType.SUPERGROUP,
-                            ChatType.GROUP,
-                            ChatType.CHANNEL,
-                        ]:
-                            chat_id = i.chat.id
-                            if chat_id not in [
-                                config.LOG_GROUP_ID,
-                                -1002159045835,
-                                -1002146211959,
-                            ]:
-                                if left == 20:
-                                    continue
-                                if not await is_active_chat(chat_id):
-                                    try:
-                                        await client.leave_chat(chat_id)
-                                        left += 1
-                                    except:
-                                        continue
-                except:
-                    pass
+                    async for dialog in client.get_dialogs():
+                        chat_type = dialog.chat.type
+                        # Only check for valid chat types (supergroup, group, channel)
+                        if chat_type in [ChatType.SUPERGROUP, ChatType.GROUP, ChatType.CHANNEL]:
+                            chat_id = dialog.chat.id
+                            # Skip the specified groups
+                            if chat_id in [config.LOG_GROUP_ID, -1002159045835, -1002146211959]:
+                                continue
+                            # Avoid leaving too many chats in one go
+                            if left >= 20:
+                                break
+                            # Leave inactive chat
+                            if not await is_active_chat(chat_id):
+                                try:
+                                    await client.leave_chat(chat_id)
+                                    left += 1
+                                except Exception as e:
+                                    print(f"Error while leaving chat {chat_id}: {e}")
+                except Exception as e:
+                    print(f"Error while processing dialogs for client {num}: {e}")
 
-
-asyncio.create_task(auto_leave())
-
-
+# Improved auto end function
 async def auto_end():
-    while not await asyncio.sleep(5):
+    while True:
+        await asyncio.sleep(5)
         if not await is_autoend():
             continue
-        for chat_id in autoend:
-            timer = autoend.get(chat_id)
+        for chat_id, timer in list(autoend.items()):
             if not timer:
                 continue
+            # Check if the timer has expired
             if datetime.now() > timer:
+                # If chat is inactive, remove from autoend
                 if not await is_active_chat(chat_id):
                     autoend[chat_id] = {}
                     continue
                 autoend[chat_id] = {}
                 try:
                     await KOKU.stop_stream(chat_id)
-                except:
-                    continue
+                except Exception as e:
+                    print(f"Error stopping stream for chat {chat_id}: {e}")
                 try:
                     await app.send_message(
                         chat_id,
                         "Bᴏᴛ ʜᴀs ʟᴇғᴛ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ ᴅᴜᴇ ᴛᴏ ɪɴᴀᴄᴛɪᴠɪᴛʏ ᴛᴏ ᴀᴠᴏɪᴅ ᴏᴠᴇʀʟᴏᴀᴅ ᴏɴ sᴇʀᴠᴇʀs. Nᴏ-ᴏɴᴇ ᴡᴀs ʟɪsᴛᴇɴɪɴɢ ᴛᴏ ᴛʜᴇ ʙᴏᴛ ᴏɴ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ.",
                     )
-                except:
-                    continue
+                except Exception as e:
+                    print(f"Error sending message to chat {chat_id}: {e}")
 
+# Create tasks for auto leave and auto end functions
+async def main():
+    # Use asyncio.gather to run both tasks concurrently
+    await asyncio.gather(
+        auto_leave(),
+        auto_end()
+    )
 
-asyncio.create_task(auto_end())
+# Run the main function
+if __name__ == "__main__":
+    asyncio.run(main())
