@@ -38,6 +38,6 @@ mongo = MongoClient(config.MONGO_DB_URI)
 OWNER = config.OWNER_ID
 
 # Function to get additional loggers
-def get_logger(name: str) -> logging.Logger:
+def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
 
