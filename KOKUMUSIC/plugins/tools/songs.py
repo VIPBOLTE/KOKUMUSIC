@@ -14,10 +14,10 @@ from pyrogram.types import (
 
 from config import BANNED_USERS, SONG_DOWNLOAD_DURATION, SONG_DOWNLOAD_DURATION_LIMIT
 from strings import get_command
-from ChampuMusic import YouTube, app, EMOJIS
-from ChampuMusic.utils.decorators.language import language, languageCB
-from ChampuMusic.utils.formatters import convert_bytes
-from ChampuMusic.utils.inline.song import song_markup
+from KOKUMUSIC import YouTube, app, EMOJIS
+from KOKUMUSIC.utils.decorators.language import language, languageCB
+from KOKUMUSIC.utils.formatters import convert_bytes
+from KOKUMUSIC.utils.inline.song import song_markup
 
 # Command
 
