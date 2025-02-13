@@ -1,4 +1,4 @@
-from KOKUMUSIC.core.bot import ChampuBot
+from KOKUMUSIC.core.bot import KOKUBOT
 from KOKUMUSIC.core.dir import dirr
 from KOKUMUSIC.core.git import git
 from KOKUMUSIC.core.userbot import Userbot
@@ -17,7 +17,7 @@ dbb()
 heroku()
 sudo()
 
-app = ChampuBot()
+app = KOKUBOT()
 userbot = Userbot()
 
 from .platforms import *
