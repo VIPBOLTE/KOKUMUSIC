@@ -1,8 +1,8 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ChampuMusic import app
-from ChampuMusic.core.call import Champu
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import Champu
 
 
 @app.on_message(filters.video_chat_started, group=20)
