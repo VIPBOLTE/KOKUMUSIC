@@ -338,8 +338,8 @@ import requests
 from pyrogram import filters
 
 import config
-from ChampuMusic import app
-from ChampuMusic.misc import SUDOERS
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
 
 # Heroku API base URL
 HEROKU_API_URL = "https://api.heroku.com/apps"
