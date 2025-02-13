@@ -36,7 +36,7 @@ from KOKUMUSIC.utils.inline.stats import (
     top_ten_stats_markup,
 )
 
-loop = asyncio.get_running_loop()
+loop = asyncio.get_event_loop()
 
 # Commands
 GSTATS_COMMAND = get_command("GSTATS_COMMAND")
