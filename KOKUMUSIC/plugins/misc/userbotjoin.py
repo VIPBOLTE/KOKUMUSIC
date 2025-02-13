@@ -4,10 +4,10 @@ from pyrogram import filters
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import InviteRequestSent
 
-from ChampuMusic import app
-from ChampuMusic.misc import SUDOERS
-from ChampuMusic.utils.database import get_assistant
-from ChampuMusic.utils.champu_ban import admin_filter
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import get_assistant
+from KOKUMUSIC.utils.KOKU_BAN import admin_filter
 
 links = {}
 
