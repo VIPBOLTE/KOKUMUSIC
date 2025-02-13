@@ -7,7 +7,7 @@ from pyrogram.types import InlineKeyboardMarkup
 import config
 from config import LOGGER_ID, OWNER_ID
 from KOKUMUSIC import Carbon, YouTube, app
-from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import db
 from KOKUMUSIC.utils.database import (
     add_active_video_chat,
@@ -192,7 +192,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Champu.join_call(
+            await KOKU.join_call(
                 chat_id, original_chat_id, file_path, video=status, image=thumbnail
             )
             await put_queue(
@@ -353,7 +353,7 @@ async def stream(
             n, file_path = await YouTube.video(link)
             if n == 0:
                 raise AssistantErr(_["str_3"])
-            await Champu.join_call(
+            await KOKU.join_call(
                 chat_id,
                 original_chat_id,
                 file_path,
