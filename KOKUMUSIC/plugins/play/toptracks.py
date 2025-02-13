@@ -11,20 +11,20 @@ from pyrogram.errors import (
 from pyrogram.types import InlineKeyboardMarkup
 
 from config import BANNED_USERS
-from ChampuMusic import app
-from ChampuMusic.utils.database import (
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import (
     get_assistant,
     get_global_tops,
     get_particulars,
     get_userss,
 )
-from ChampuMusic.utils.decorators.language import languageCB
-from ChampuMusic.utils.inline.playlist import (
+from KOKUMUSIC.utils.decorators.language import languageCB
+from KOKUMUSIC.utils.inline.playlist import (
     botplaylist_markup,
     failed_top_markup,
     top_play_markup,
 )
-from ChampuMusic.utils.stream.stream import stream
+from KOKUMUSIC.utils.stream.stream import stream
 
 loop = asyncio.get_running_loop()
 
