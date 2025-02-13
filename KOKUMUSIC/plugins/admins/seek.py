@@ -4,7 +4,7 @@ from pyrogram.types import Message
 from config import BANNED_USERS
 from strings import get_command
 from KOKUMUSIC import YouTube, app
-from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import db
 from KOKUMUSIC.utils import AdminRightsCheck, seconds_to_min
 
@@ -50,7 +50,7 @@ async def seek_comm(cli, message: Message, _, chat_id):
         if n == 0:
             return await message.reply_text(_["admin_30"])
     try:
-        await Champu.seek_stream(
+        await KOKU.seek_stream(
             chat_id,
             file_path,
             seconds_to_min(to_seek),
