@@ -5,11 +5,11 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from config import BANNED_USERS
 from strings import get_string
-from ChampuMusic import app
-from ChampuMusic.utils.database import get_assistant, get_lang
-from ChampuMusic.utils.decorators.radio import RadioWrapper
-from ChampuMusic.utils.logger import play_logs
-from ChampuMusic.utils.stream.stream import stream
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import get_assistant, get_lang
+from KOKUMUSIC.utils.decorators.radio import RadioWrapper
+from KOKUMUSIC.utils.logger import play_logs
+from KOKUMUSIC.utils.stream.stream import stream
 
 # Radio Station List
 RADIO_STATION = {
