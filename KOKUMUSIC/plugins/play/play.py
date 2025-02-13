@@ -11,22 +11,22 @@ from pytgcalls.exceptions import NoActiveGroupCall
 import config
 from config import BANNED_USERS, LOGGER_ID, OWNER_ID, lyrical
 from ChampuMusic import LOGGER, Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app, EMOJIS
-from ChampuMusic.core.call import Champu
-from ChampuMusic.utils import seconds_to_min, time_to_seconds
-from ChampuMusic.utils.channelplay import get_channeplayCB
-from ChampuMusic.utils.database import add_served_chat, get_assistant, is_video_allowed
-from ChampuMusic.utils.decorators.language import languageCB
-from ChampuMusic.utils.decorators.play import PlayWrapper
-from ChampuMusic.utils.formatters import formats
-from ChampuMusic.utils.inline.play import (
+from KOKUMUSIC.core.call import KOKU
+from KOKUMUSIC.utils import seconds_to_min, time_to_seconds
+from KOKUMUSIC.utils.channelplay import get_channeplayCB
+from KOKUMUSIC.utils.database import add_served_chat, get_assistant, is_video_allowed
+from KOKUMUSIC.utils.decorators.language import languageCB
+from KOKUMUSICutils.decorators.play import PlayWrapper
+from KOKUMUSIC.utils.formatters import formats
+from KOKUMUSIC.utils.inline.play import (
     livestream_markup,
     playlist_markup,
     slider_markup,
     track_markup,
 )
-from ChampuMusic.utils.inline.playlist import botplaylist_markup
-from ChampuMusic.utils.logger import play_logs
-from ChampuMusic.utils.stream.stream import stream
+from KOKUMUSIC.utils.inline.playlist import botplaylist_markup
+from KOKUMUSIC.utils.logger import play_logs
+from KOKUMUSIC.utils.stream.stream import stream
 
 user_last_message_time = {}
 user_command_count = {}
@@ -346,7 +346,7 @@ async def play_commnd(
                     "ᴏᴏᴘs ɪ ᴅᴏɴ'ᴛ Tʜɪɴᴋ ᴛʜᴀᴛ ɪᴛ ɪs ᴀ sᴛʀᴇᴀᴍᴀʙʟᴇ ᴜʀʟ"
                 )
             try:
-                await Champu.stream_call(url)
+                await KOKU.stream_call(url)
             except NoActiveGroupCall:
                 await mystic.edit_text(
                     "ᴛʜᴇʀᴇ's ᴀɴ ᴇʀʀᴏʀ ɪɴ ᴛʜᴇ ʙᴏᴛ, ᴩʟᴇᴀsᴇ ʀᴇᴩᴏʀᴛ ɪᴛ ᴛᴏ sᴜᴩᴩᴏʀᴛ ᴄʜᴀᴛ ᴀs sᴏᴏɴ ᴀs ᴩᴏssɪʙʟᴇ."
