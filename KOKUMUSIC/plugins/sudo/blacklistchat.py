@@ -4,9 +4,9 @@ from pyrogram.types import Message
 from config import BANNED_USERS
 from strings import get_command
 from ChampuMusic import app
-from ChampuMusic.misc import SUDOERS
-from ChampuMusic.utils.database import blacklist_chat, blacklisted_chats, whitelist_chat
-from ChampuMusic.utils.decorators.language import language
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import blacklist_chat, blacklisted_chats, whitelist_chat
+from KOKUMUSIC.utils.decorators.language import language
 
 # Commands
 
