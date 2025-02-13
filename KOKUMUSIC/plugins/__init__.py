@@ -116,9 +116,6 @@ for module_name in ALL_MODULES:
     try:
         # Dynamically import the module
         module = importlib.import_module(module_name)
-        
-        # Log successful module import
-        logger.info(f"Successfully imported {module_name}")
 
         # If the module has a callable `run()` method, execute it
         if hasattr(module, "run"):
