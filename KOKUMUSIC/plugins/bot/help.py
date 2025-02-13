@@ -8,10 +8,10 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 import config
 from config import BANNED_USERS, START_IMG_URL
 from strings import get_command, get_string
-from ChampuMusic import HELPABLE, app
-from ChampuMusic.utils.database import get_lang, is_commanddelete_on
-from ChampuMusic.utils.decorators.language import LanguageStart
-from ChampuMusic.utils.inline.help import private_help_panel
+from KOKUMUSIC import HELPABLE, app
+from KOKUMUSIC.utils.database import get_lang, is_commanddelete_on
+from KOKUMUSIC.utils.decorators.language import LanguageStart
+from KOKUMUSIC.utils.inline.help import private_help_panel
 
 ### Command
 HELP_COMMAND = get_command("HELP_COMMAND")
