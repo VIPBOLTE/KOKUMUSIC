@@ -3,7 +3,7 @@ import os
 from typing import Dict, List, Union
 
 import config
-from ChampuMusic.core.mongo import mongodb
+from KOKUMUSIC.core.mongo import mongodb
 
 channeldb = mongodb.cplaymode
 commanddb = mongodb.commands
