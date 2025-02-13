@@ -1,6 +1,6 @@
 from pyrogram import filters
 
-from ChampuMusic.utils.admin_check import admin_check
+from KOKUMUSIC.utils.admin_check import admin_check
 
 USE_AS_BOT = True
 
