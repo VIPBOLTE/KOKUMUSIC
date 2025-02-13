@@ -4,9 +4,9 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS
 from strings import get_command
-from ChampuMusic import app
-from ChampuMusic.utils.database import set_cmode
-from ChampuMusic.utils.decorators.admins import AdminActual
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import set_cmode
+from KOKUMUSIC.utils.decorators.admins import AdminActual
 
 ### Multi-Lang Commands
 CHANNELPLAY_COMMAND = get_command("CHANNELPLAY_COMMAND")
