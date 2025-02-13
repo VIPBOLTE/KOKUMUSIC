@@ -102,6 +102,10 @@ def __list_all_modules():
             try:
                 # Add the external repo to the system path
                 sys.path.append(EXTERNAL_REPO_PATH)
+
+                # Ensure plugins module can be found
+                import plugins
+
                 # Try importing PLUGINS_MODULES from the external repo
                 from plugins import PLUGINS_MODULES
                 external_modules = [
