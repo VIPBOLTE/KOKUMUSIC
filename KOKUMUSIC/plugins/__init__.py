@@ -103,11 +103,13 @@ def __list_all_modules():
                 # Add the external repo to the system path
                 sys.path.append(EXTERNAL_REPO_PATH)
 
-                # Ensure plugins module can be found
+                # Dynamically import the `plugins` package
                 import plugins
 
-                # Try importing PLUGINS_MODULES from the external repo
+                # Now load the PLUGINS_MODULES from __init__.py in plugins
                 from plugins import PLUGINS_MODULES
+
+                # Now iterate over PLUGINS_MODULES and load each plugin
                 external_modules = [
                     f"{EXTRA_PLUGINS_FOLDER}.{mod}"
                     for mod in PLUGINS_MODULES
@@ -116,7 +118,7 @@ def __list_all_modules():
                 logger.info(f"Successfully loaded external plugins from PLUGINS_MODULES: {PLUGINS_MODULES}")
             except ImportError as e:
                 logger.error(f"Failed to import PLUGINS_MODULES: {e}")
-                # Fallback to globbing
+                # Fallback to globbing (if something goes wrong)
                 external_mod_paths = glob.glob(join(external_plugins_dir, "*.py"))
                 external_mod_paths += glob.glob(join(external_plugins_dir, "*/*.py"))
                 external_modules = [
