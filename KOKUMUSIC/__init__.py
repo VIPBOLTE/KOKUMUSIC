@@ -1,25 +1,32 @@
-import json
-import os
-import config
-import pytz
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
-
-from KOKUMUSIC.core.bot import KOKUBOT
+from KOKUMUSIC.core.bot import ChampuBot
 from KOKUMUSIC.core.dir import dirr
 from KOKUMUSIC.core.git import git
 from KOKUMUSIC.core.userbot import Userbot
 from KOKUMUSIC.misc import dbb, heroku, sudo
+
 from .logging import LOGGER
-#time zone
-TIME_ZONE = pytz.timezone(config.TIME_ZONE)
-scheduler = AsyncIOScheduler(timezone=TIME_ZONE)
+
+EMOJIS = ["PPLAY_1", "PPLAY_2", "PPLAY_3", "PPLAY_4", "PPLAY_5",
+          "PPLAY_6", "PPLAY_7", "PPLAY_8", "PPLAY_9", "PPLAY_10",
+          "PPLAY_11", "PPLAY_12", "PPLAY_13", "PPLAY_14", "PPLAY_15",
+          "PPLAY_16", "PPLAY_17"]
+
 dirr()
 git()
 dbb()
 heroku()
 sudo()
-app = KOKUBOT()
+
+app = ChampuBot()
 userbot = Userbot()
-from .platforms import PlaTForms
-Platform = PlaTForms()
+
+from .platforms import *
+
+YouTube = YouTubeAPI()
+Carbon = CarbonAPI()
+Spotify = SpotifyAPI()
+Apple = AppleAPI()
+Resso = RessoAPI()
+SoundCloud = SoundAPI()
+Telegram = TeleAPI()
 HELPABLE = {}
