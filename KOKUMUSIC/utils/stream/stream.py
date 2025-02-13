@@ -41,7 +41,7 @@ async def stream(
         if not await is_video_allowed(chat_id):
             raise AssistantErr(_["play_7"])
     if forceplay:
-        await Champu.force_stop_stream(chat_id)
+        await KOKU.force_stop_stream(chat_id)
     if streamtype == "playlist":
         msg = f"{_['playlist_16']}\n\n"
         count = 0
@@ -97,7 +97,7 @@ async def stream(
                         f"**ʜᴇʏ [ᴏᴡɴᴇʀ](tg://user?id={OWNER_ID[0]}) ᴍᴀʏ ʙᴇ ᴍʏ ᴄᴏᴏᴋɪᴇs ʜᴀs ʙᴇᴇɴ ᴅᴇᴀᴅ ᴘʟᴇᴀsᴇ ᴄʜᴇᴄᴋ ᴏɴᴇ ᴛɪᴍᴇ ʙʏ ᴘʟᴀʏ ᴀɴʏ sᴏɴɢs**",
                     )
 
-                await Champu.join_call(
+                await KOKU.join_call(
                     chat_id, original_chat_id, file_path, video=status, image=thumbnail
                 )
                 await put_queue(
@@ -249,7 +249,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Champu.join_call(chat_id, original_chat_id, file_path, video=None)
+            await KOKU.join_call(chat_id, original_chat_id, file_path, video=None)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -299,7 +299,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Champu.join_call(chat_id, original_chat_id, file_path, video=status)
+            await KOKU.join_call(chat_id, original_chat_id, file_path, video=status)
             await put_queue(
                 chat_id,
                 original_chat_id,
@@ -409,7 +409,7 @@ async def stream(
         else:
             if not forceplay:
                 db[chat_id] = []
-            await Champu.join_call(
+            await KOKU.join_call(
                 chat_id,
                 original_chat_id,
                 link,
