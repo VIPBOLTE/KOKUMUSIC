@@ -3,7 +3,7 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS, adminlist
 from KOKUMUSIC import app
-from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import SUDOERS, db
 from KOKUMUSIC.utils import AdminRightsCheck
 from KOKUMUSIC.utils.database import is_active_chat, is_nonadmin_chat
@@ -85,7 +85,7 @@ async def del_back_playlist(client, callback_query, _):
         text=_["speed_6"].format(callback_query.from_user.mention),
     )
     try:
-        await Champu.speedup_stream(
+        await KOKU.speedup_stream(
             chat_id,
             file_path,
             speed,
