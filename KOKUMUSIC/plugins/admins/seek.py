@@ -3,10 +3,10 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS
 from strings import get_command
-from ChampuMusic import YouTube, app
-from ChampuMusic.core.call import Champu
-from ChampuMusic.misc import db
-from ChampuMusic.utils import AdminRightsCheck, seconds_to_min
+from KOKUMUSIC import YouTube, app
+from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils import AdminRightsCheck, seconds_to_min
 
 # Commands
 SEEK_COMMAND = get_command("SEEK_COMMAND")
