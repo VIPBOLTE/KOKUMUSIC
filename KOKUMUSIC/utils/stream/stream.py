@@ -6,20 +6,20 @@ from pyrogram.types import InlineKeyboardMarkup
 
 import config
 from config import LOGGER_ID, OWNER_ID
-from ChampuMusic import Carbon, YouTube, app
-from ChampuMusic.core.call import Champu
-from ChampuMusic.misc import db
-from ChampuMusic.utils.database import (
+from KOKUMUSIC import Carbon, YouTube, app
+from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils.database import (
     add_active_video_chat,
     is_active_chat,
     is_video_allowed,
 )
-from ChampuMusic.utils.exceptions import AssistantErr
-from ChampuMusic.utils.inline.play import queue_markup, stream_markup, telegram_markup
-from ChampuMusic.utils.inline.playlist import close_markup
-from ChampuMusic.utils.pastebin import Champubin
-from ChampuMusic.utils.stream.queue import put_queue, put_queue_index
-from ChampuMusic.utils.thumbnails import gen_qthumb, get_thumb
+from KOKUMUSIC.utils.exceptions import AssistantErr
+from KOKUMUSIC.utils.inline.play import queue_markup, stream_markup, telegram_markup
+from KOKUMUSIC.utils.inline.playlist import close_markup
+from KOKUMUSIC.utils.pastebin import Champubin
+from KOKUMUSIC.utils.stream.queue import put_queue, put_queue_index
+from KOKUMUSIC.utils.thumbnails import gen_qthumb, get_thumb
 
 
 async def stream(
