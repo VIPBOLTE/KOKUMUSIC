@@ -93,7 +93,7 @@ def __list_all_modules():
                 sys.path.append(EXTERNAL_REPO_PATH)
                 from plugins import PLUGINS_MODULES
                 external_modules = [
-                    f"{EXTRA_PLUGINS_FOLDER}.plugins.{mod}"
+                    f"{EXTRA_PLUGINS_FOLDER}.{mod}"
                     for mod in PLUGINS_MODULES
                 ]
                 all_modules.extend(external_modules)
