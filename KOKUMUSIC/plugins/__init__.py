@@ -111,17 +111,4 @@ def __list_all_modules():
 ALL_MODULES = sorted(__list_all_modules())
 __all__ = ALL_MODULES + ["ALL_MODULES"]
 
-# Dynamically import and run all modules in ALL_MODULES
-for module_name in ALL_MODULES:
-    try:
-        # Dynamically import the module
-        module = importlib.import_module(module_name)
-
-        # If the module has a callable `run()` method, execute it
-        if hasattr(module, "run"):
-            module.run()  # Or any other specific method you need to call
-
-    except ImportError as e:
-        logger.error(f"Error importing {module_name}: {e}")
-    except Exception as e:
-        logger.error(f"Error running {module_name}: {e}")
+# The actual execution of plugins should be handled in another script, not in __init__.py
