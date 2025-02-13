@@ -12,6 +12,7 @@ from KOKUMUSIC import LOGGER
 
 logger = LOGGER(__name__)
 
+# Remove old plugin folders if they exist
 if EXTRA_PLUGINS_FOLDER in os.listdir():
     shutil.rmtree(EXTRA_PLUGINS_FOLDER)
 
@@ -22,9 +23,12 @@ ROOT_DIR = abspath(join(dirname(__file__), "..", ".."))
 
 EXTERNAL_REPO_PATH = join(ROOT_DIR, EXTRA_PLUGINS_FOLDER)
 
+# Check if extra plugins are enabled from config
 extra_plugins_enabled = EXTRA_PLUGINS.lower() == "true"
 
+# If extra plugins are enabled, proceed to clone the repository and set up the environment
 if extra_plugins_enabled:
+    # Clone the external repository if it doesn't exist
     if not os.path.exists(EXTERNAL_REPO_PATH):
         with open(os.devnull, "w") as devnull:
             clone_result = subprocess.run(
@@ -36,7 +40,10 @@ if extra_plugins_enabled:
                 logger.error(
                     f"Error cloning external plugins repository: {clone_result.stderr.decode()}"
                 )
+            else:
+                logger.info(f"Successfully cloned the repository: {EXTERNAL_REPO_PATH}")
 
+    # Set up utils directory
     utils_source_path = join(EXTERNAL_REPO_PATH, "utils")
     utils_target_path = join(ROOT_DIR, "utils")
     if os.path.isdir(utils_source_path):
@@ -56,6 +63,7 @@ if extra_plugins_enabled:
     if os.path.isdir(utils_target_path):
         sys.path.append(utils_target_path)
 
+    # Install requirements from the external repo if available
     requirements_path = join(EXTERNAL_REPO_PATH, "requirements.txt")
     if os.path.isfile(requirements_path):
         with open(os.devnull, "w") as devnull:
@@ -68,12 +76,14 @@ if extra_plugins_enabled:
                 logger.error(
                     f"Error installing requirements for external plugins: {install_result.stderr.decode()}"
                 )
+            else:
+                logger.info(f"Successfully installed requirements from {requirements_path}")
 
 
 def __list_all_modules():
     all_modules = []
     main_repo_plugins_dir = dirname(__file__)
-    
+
     # Process main repository plugins
     main_mod_paths = glob.glob(join(main_repo_plugins_dir, "*.py"))
     main_mod_paths += glob.glob(join(main_repo_plugins_dir, "*/*.py"))
@@ -83,11 +93,12 @@ def __list_all_modules():
         if isfile(f) and f.endswith(".py") and not f.endswith("__init__.py")
     ]
     all_modules.extend(main_modules)
-    
+
     # Process external plugins if enabled
     if extra_plugins_enabled:
-        external_plugins_dir = join(EXTERNAL_REPO_PATH, "pligins")
-        plugins = join(external_plugins_dir, "__init__.py")
+        external_plugins_dir = join(EXTERNAL_REPO_PATH, "plugins")  # Corrected folder name
+        plugins_init_path = join(external_plugins_dir, "__init__.py")  # Corrected variable name
+        
         if os.path.isfile(plugins_init_path):
             try:
                 sys.path.append(EXTERNAL_REPO_PATH)
@@ -100,7 +111,7 @@ def __list_all_modules():
                 logger.info(f"Successfully loaded external plugins from PLUGINS_MODULES: {PLUGINS_MODULES}")
             except ImportError as e:
                 logger.error(f"Failed to import PLUGINS_MODULES: {e}")
-                # Fallback to globbing
+                # Fallback to globbing if ImportError occurs
                 external_mod_paths = glob.glob(join(external_plugins_dir, "*.py"))
                 external_mod_paths += glob.glob(join(external_plugins_dir, "*/*.py"))
                 external_modules = [
@@ -112,7 +123,7 @@ def __list_all_modules():
             except Exception as e:
                 logger.error(f"Unexpected error loading external plugins: {e}")
         else:
-            # No __init__.py found
+            # No __init__.py found, fallback to globbing
             external_mod_paths = glob.glob(join(external_plugins_dir, "*.py"))
             external_mod_paths += glob.glob(join(external_plugins_dir, "*/*.py"))
             external_modules = [
@@ -121,9 +132,8 @@ def __list_all_modules():
                 if isfile(f) and f.endswith(".py") and not f.endswith("__init__.py")
             ]
             all_modules.extend(external_modules)
-    
-    return sorted(all_modules)
 
+    return sorted(all_modules)
 
 ALL_MODULES = __list_all_modules()
 __all__ = ALL_MODULES + ["ALL_MODULES"]
