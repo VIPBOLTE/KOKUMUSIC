@@ -2,7 +2,7 @@ import math
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from ChampuMusic.utils.formatters import time_to_seconds
+from KOKUMUSIC.utils.formatters import time_to_seconds
 
 
 def to_small_caps(text):
