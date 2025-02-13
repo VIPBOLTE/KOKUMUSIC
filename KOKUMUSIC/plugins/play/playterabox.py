@@ -1,9 +1,9 @@
 from pyrogram import filters
 from pyrogram.types import Message
-from ChampuMusic import app, TeraboxAPI  # Make sure to import your new TeraboxAPI
-from ChampuMusic.core.call import Champu
-from ChampuMusic.utils.database import is_active_chat
-from ChampuMusic.utils.stream.queue import put_queue
+from KOKUMUSIC import app, TeraboxAPI  # Make sure to import your new TeraboxAPI
+from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.utils.database import is_active_chat
+from KOKUMUSIC.utils.stream.queue import put_queue
 
 terabox_api = TeraboxAPI()
 
