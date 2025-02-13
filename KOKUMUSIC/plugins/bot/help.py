@@ -267,8 +267,8 @@ from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMa
 
 from config import BANNED_USERS
 from strings import helpers
-from ChampuMusic import app
-from ChampuMusic.utils.decorators.language import languageCB
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.decorators.language import languageCB
 
 
 @app.on_callback_query(filters.regex("music_callback") & ~BANNED_USERS)
