@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 from KOKUMUSIC import app, TeraboxAPI  # Make sure to import your new TeraboxAPI
-from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.utils.database import is_active_chat
 from KOKUMUSIC.utils.stream.queue import put_queue
 
@@ -50,7 +50,7 @@ async def play_terabox(client, message: Message):
         await message.reply_text(f"Added to queue: {title}")
     else:
         # If no active chat, join and play the video
-        await Champu.join_call(chat_id, original_chat_id, link)  # Adjust if needed
+        await KOKU.join_call(chat_id, original_chat_id, link)  # Adjust if needed
         await put_queue(
             chat_id,
             original_chat_id,
