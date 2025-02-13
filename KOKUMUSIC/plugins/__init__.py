@@ -86,7 +86,7 @@ def __list_all_modules():
     
     # Process external plugins if enabled
     if extra_plugins_enabled:
-        external_plugins_dir = join(EXTERNAL_REPO_PATH, "plugins")
+        external_plugins_dir = join(EXTERNAL_REPO_PATH)
         plugins_init_path = join(external_plugins_dir, "__init__.py")
         if os.path.isfile(plugins_init_path):
             try:
