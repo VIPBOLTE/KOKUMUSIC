@@ -3,8 +3,8 @@ import shutil
 
 from pyrogram import filters
 
-from ChampuMusic import app
-from ChampuMusic.misc import SUDOERS
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
 
 
 @app.on_message(filters.command("clean") & SUDOERS)
