@@ -1,6 +1,6 @@
 from typing import Dict, List, Union
 
-from ChampuMusic.core.mongo import mongodb
+from KOKUMUSIC.core.mongo import mongodb
 
 queriesdb = mongodb.queries
 userdb = mongodb.userstats
