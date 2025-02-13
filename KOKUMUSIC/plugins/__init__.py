@@ -12,19 +12,14 @@ from KOKUMUSIC import LOGGER
 
 logger = LOGGER(__name__)
 
-# Clear previous external plugins and utils if exist
-if EXTRA_PLUGINS_FOLDER in os.listdir():
-    shutil.rmtree(EXTRA_PLUGINS_FOLDER)
-
-if "utils" in os.listdir():
-    shutil.rmtree("utils")
-
+# Paths setup
 ROOT_DIR = abspath(join(dirname(__file__), "..", ".."))
 EXTERNAL_REPO_PATH = join(ROOT_DIR, EXTRA_PLUGINS_FOLDER)
 
-# Enable external plugins based on config
+# Flag for external plugins
 extra_plugins_enabled = EXTRA_PLUGINS.lower() == "true"
 
+# Clone the external repo if required
 if extra_plugins_enabled:
     if not os.path.exists(EXTERNAL_REPO_PATH):
         with open(os.devnull, "w") as devnull:
@@ -34,11 +29,9 @@ if extra_plugins_enabled:
                 stderr=subprocess.PIPE,
             )
             if clone_result.returncode != 0:
-                logger.error(
-                    f"Error cloning external plugins repository: {clone_result.stderr.decode()}"
-                )
+                logger.error(f"Error cloning external plugins repository: {clone_result.stderr.decode()}")
 
-    # Handle 'utils' folder and requirements installation
+    # Handling utils folder
     utils_source_path = join(EXTERNAL_REPO_PATH, "utils")
     utils_target_path = join(ROOT_DIR, "utils")
     if os.path.isdir(utils_source_path):
@@ -55,9 +48,7 @@ if extra_plugins_enabled:
                     if not os.path.exists(target_file):
                         os.rename(source_file, target_file)
 
-    if os.path.isdir(utils_target_path):
-        sys.path.append(utils_target_path)
-
+    # Install requirements for external plugins
     requirements_path = join(EXTERNAL_REPO_PATH, "requirements.txt")
     if os.path.isfile(requirements_path):
         with open(os.devnull, "w") as devnull:
@@ -67,12 +58,9 @@ if extra_plugins_enabled:
                 stderr=subprocess.PIPE,
             )
             if install_result.returncode != 0:
-                logger.error(
-                    f"Error installing requirements for external plugins: {install_result.stderr.decode()}"
-                )
+                logger.error(f"Error installing requirements for external plugins: {install_result.stderr.decode()}")
 
 
-# Function to list all modules from both main repo and external plugins
 def __list_all_modules():
     all_modules = []
     main_repo_plugins_dir = dirname(__file__)
@@ -89,18 +77,20 @@ def __list_all_modules():
 
     # Process external plugins if enabled
     if extra_plugins_enabled:
-        external_plugins_dir = join(EXTERNAL_REPO_PATH, "plugins")
+        external_plugins_dir = join(EXTERNAL_REPO_PATH, "plugins")  # Ensure the 'plugins' folder is here
         plugins_init_path = join(external_plugins_dir, "__init__.py")
+        
+        # Check for __init__.py in the external plugin folder
         if os.path.isfile(plugins_init_path):
             try:
                 sys.path.append(EXTERNAL_REPO_PATH)
-                # Import PLUGINS_MODULES from external repo __init__.py
                 from plugins import PLUGINS_MODULES
-                all_modules.extend(PLUGINS_MODULES)
-                logger.info(f"Successfully loaded external plugins: {PLUGINS_MODULES}")
+                external_modules = [f"{EXTRA_PLUGINS_FOLDER}.{mod}" for mod in PLUGINS_MODULES]
+                all_modules.extend(external_modules)
+                logger.info(f"Successfully loaded external plugins from PLUGINS_MODULES: {PLUGINS_MODULES}")
             except ImportError as e:
                 logger.error(f"Failed to import PLUGINS_MODULES: {e}")
-                # Fallback to globbing in case of ImportError
+                # Fallback to globbing
                 external_mod_paths = glob.glob(join(external_plugins_dir, "*.py"))
                 external_mod_paths += glob.glob(join(external_plugins_dir, "*/*.py"))
                 external_modules = [
@@ -112,7 +102,7 @@ def __list_all_modules():
             except Exception as e:
                 logger.error(f"Unexpected error loading external plugins: {e}")
         else:
-            # No __init__.py found, fallback to globbing
+            # No __init__.py found in the external repo, fallback to globbing
             external_mod_paths = glob.glob(join(external_plugins_dir, "*.py"))
             external_mod_paths += glob.glob(join(external_plugins_dir, "*/*.py"))
             external_modules = [
@@ -125,6 +115,35 @@ def __list_all_modules():
     return sorted(all_modules)
 
 
-ALL_MODULES = __list_all_modules()
-__all__ = ALL_MODULES + ["ALL_MODULES"]
+def import_plugin_module(module_name):
+    """Import the plugin module by its full name."""
+    try:
+        if '.' in module_name:  # Handle relative imports
+            # Provide package context for relative imports
+            package = module_name.rsplit('.', 1)[0]  # Get the package part
+            full_module_name = module_name.split(".", 1)[-1]  # Module part
+            imported_module = importlib.import_module(full_module_name, package)
+        else:
+            # Absolute import
+            imported_module = importlib.import_module(module_name)
+        
+        logger.info(f"Successfully imported {module_name}")
+        return imported_module
+    except ModuleNotFoundError as e:
+        logger.error(f"Module {module_name} not found: {e}")
+        raise
+    except Exception as e:
+        logger.error(f"Error importing module {module_name}: {e}")
+        raise
 
+
+def init():
+    # Sample plugin modules
+    all_modules = __list_all_modules()
+
+    for all_module in all_modules:
+        import_plugin_module(all_module)
+
+
+# Initialize the modules
+init()
