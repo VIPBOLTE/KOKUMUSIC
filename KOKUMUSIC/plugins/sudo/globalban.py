@@ -6,10 +6,10 @@ from pyrogram.types import Message
 
 from config import BANNED_USERS
 from strings import get_command
-from ChampuMusic import app
-from ChampuMusic.misc import SUDOERS
-from ChampuMusic.utils import get_readable_time
-from ChampuMusic.utils.database import (
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils import get_readable_time
+from KOKUMUSIC.utils.database import (
     add_banned_user,
     get_banned_count,
     get_banned_users,
@@ -17,7 +17,7 @@ from ChampuMusic.utils.database import (
     is_banned_user,
     remove_banned_user,
 )
-from ChampuMusic.utils.decorators.language import language
+from KOKUMUSIC.utils.decorators.language import language
 
 # Command
 GBAN_COMMAND = get_command("GBAN_COMMAND")
