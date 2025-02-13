@@ -94,7 +94,7 @@ async def stop_music(cli, message: Message):
             else:
                 if message.from_user.id not in admins:
                     return await message.reply_text(_["admin_19"])
-    await Champu.st_stream(chat_id)
+    await KOKU.st_stream(chat_id)
     await set_loop(chat_id, 0)
     await message.reply_text(_["admin_9"].format(message.from_user.mention))
 
@@ -102,7 +102,7 @@ async def stop_music(cli, message: Message):
 from pyrogram import filters
 from pyrogram.types import Message
 
-from ChampuMusic import app
+from KOKUMUSIC import app
 
 photo = [
     "https://envs.sh/qeq.jpg",
@@ -159,12 +159,12 @@ async def assistant_banned(client: app, member: ChatMemberUpdated):
                 reply_markup=keyboard,
             )
             # Perform actions like stopping streams or loops
-            await Champu.st_stream(chat_id)
+            await KOKU.st_stream(chat_id)
             await set_loop(chat_id, 0)
             await app.unban_chat_member(chat_id, userbot.id)
             await asyncio.sleep(10)
     except UserNotParticipant:
-        await Champu.st_stream(chat_id)
+        await KOKU.st_stream(chat_id)
         await set_loop(chat_id, 0)
         await app.unban_chat_member(chat_id, userbot.id)
         await asyncio.sleep(10)
@@ -200,7 +200,7 @@ async def assistant_left(client: app, member: ChatMemberUpdated):
                 reply_markup=keyboard,
             )
 
-            await Champu.st_stream(chat_id)
+            await KOKU.st_stream(chat_id)
             await set_loop(chat_id, 0)
             await asyncio.sleep(10)
     except UserNotParticipant:
@@ -216,7 +216,7 @@ async def assistant_left(client: app, member: ChatMemberUpdated):
             caption=left_message,
             reply_markup=keyboard,
         )
-        await Champu.st_stream(chat_id)
+        await KOKU.st_stream(chat_id)
         await set_loop(chat_id, 0)
         await asyncio.sleep(10)
     except Exception as e:
@@ -227,7 +227,7 @@ async def brah(_, msg):
     chat_id = msg.chat.id
     try:
         await msg.reply("**😍ᴠɪᴅᴇᴏ ᴄʜᴀᴛ sᴛᴀʀᴛᴇᴅ🥳**")
-        await Champu.st_stream(chat_id)
+        await KOKU.st_stream(chat_id)
         await set_loop(chat_id, 0)
     except Exception as e:
         if isinstance(e, ChatWriteForbidden):
@@ -241,7 +241,7 @@ async def brah2(_, msg):
     chat_id = msg.chat.id
     try:
         await msg.reply("**😕ᴠɪᴅᴇᴏ ᴄʜᴀᴛ ᴇɴᴅᴇᴅ💔**")
-        await Champu.st_stream(chat_id)
+        await KOKU.st_stream(chat_id)
         await set_loop(chat_id, 0)
     except Exception as e:
         if isinstance(e, ChatWriteForbidden):
