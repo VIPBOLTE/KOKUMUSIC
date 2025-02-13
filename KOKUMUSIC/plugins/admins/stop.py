@@ -14,7 +14,7 @@ from pyrogram.types import (
 from config import BANNED_USERS, adminlist
 from strings import get_string
 from KOKUMUSIC import app
-from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import SUDOERS
 from KOKUMUSIC.plugins import extra_plugins_enabled
 from KOKUMUSIC.utils.database import (
