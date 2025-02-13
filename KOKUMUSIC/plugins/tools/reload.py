@@ -9,12 +9,12 @@ from pyrogram.types import CallbackQuery, Message
 
 from config import BANNED_USERS, adminlist, lyrical
 from strings import get_command
-from ChampuMusic import app
-from ChampuMusic.core.call import Champu
-from ChampuMusic.misc import db
-from ChampuMusic.utils.database import get_authuser_names, get_cmode
-from ChampuMusic.utils.decorators import ActualAdminCB, AdminActual, language
-from ChampuMusic.utils.formatters import alpha_to_int
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils.database import get_authuser_names, get_cmode
+from KOKUMUSIC.utils.decorators import ActualAdminCB, AdminActual, language
+from KOKUMUSIC.utils.formatters import alpha_to_int
 
 ### Multi-Lang Commands
 RELOAD_COMMAND = get_command("RELOAD_COMMAND")
