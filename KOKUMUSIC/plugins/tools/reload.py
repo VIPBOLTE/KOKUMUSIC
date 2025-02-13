@@ -10,7 +10,7 @@ from pyrogram.types import CallbackQuery, Message
 from config import BANNED_USERS, adminlist, lyrical
 from strings import get_command
 from KOKUMUSIC import app
-from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.misc import db
 from KOKUMUSIC.utils.database import get_authuser_names, get_cmode
 from KOKUMUSIC.utils.decorators import ActualAdminCB, AdminActual, language
@@ -51,7 +51,7 @@ async def restartbot(client, message: Message, _):
     await asyncio.sleep(1)
     try:
         db[message.chat.id] = []
-        await Champu.stop_stream(message.chat.id)
+        await KOKU.stop_stream(message.chat.id)
     except:
         pass
     chat_id = await get_cmode(message.chat.id)
@@ -62,7 +62,7 @@ async def restartbot(client, message: Message, _):
             pass
         try:
             db[chat_id] = []
-            await Champu.stop_stream(chat_id)
+            await KOKU.stop_stream(chat_id)
         except:
             pass
     return await mystic.edit_text("sᴜᴄᴇssғᴜʟʟʏ ʀᴇsᴛᴀʀᴛᴇᴅ. \nTʀʏ ᴘʟᴀʏɪɴɢ ɴᴏᴡ..")
