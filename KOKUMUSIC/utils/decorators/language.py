@@ -1,6 +1,6 @@
 from strings import get_string
-from ChampuMusic.misc import SUDOERS
-from ChampuMusic.utils.database import get_lang, is_commanddelete_on, is_maintenance
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import get_lang, is_commanddelete_on, is_maintenance
 
 
 def language(mystic):
