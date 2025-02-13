@@ -1,5 +1,4 @@
 import asyncio
-
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup
 
@@ -17,9 +16,6 @@ from KOKUMUSIC.utils.inline.playlist import (
     top_play_markup,
 )
 from KOKUMUSIC.utils.stream.stream import stream
-
-loop = asyncio.get_running_loop()
-
 
 @app.on_callback_query(filters.regex("get_playmarkup") & ~BANNED_USERS)
 @languageCB
@@ -74,6 +70,7 @@ async def server_to_play(client, CallbackQuery, _):
     if not stats:
         return await mystic.edit(_["tracks_2"].format(what), reply_markup=upl)
 
+    # Synchronous code to arrange stats for further processing
     def get_stats():
         results = {}
         for i in stats:
@@ -102,10 +99,11 @@ async def server_to_play(client, CallbackQuery, _):
         return details
 
     try:
-        details = await loop.run_in_executor(None, get_stats)
+        details = await asyncio.to_thread(get_stats)  # Offload blocking work to a separate thread
     except Exception as e:
         print(e)
         return
+
     try:
         await stream(
             _,
@@ -122,5 +120,5 @@ async def server_to_play(client, CallbackQuery, _):
         ex_type = type(e).__name__
         err = e if ex_type == "AssistantErr" else _["general_3"].format(ex_type)
         return await mystic.edit_text(err)
+
     return await mystic.delete()
-    
