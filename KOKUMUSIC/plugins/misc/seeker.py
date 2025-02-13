@@ -3,10 +3,10 @@ import asyncio
 from pyrogram.types import InlineKeyboardMarkup
 
 from strings import get_string
-from ChampuMusic.misc import db
-from ChampuMusic.utils.database import get_active_chats, get_lang, is_music_playing
-from ChampuMusic.utils.formatters import seconds_to_min
-from ChampuMusic.utils.inline import stream_markup_timerr, telegram_markup_timer
+from KOKUMUSIC.misc import db
+from KOKUMUSIC.utils.database import get_active_chats, get_lang, is_music_playing
+from KOKUMUSIC.utils.formatters import seconds_to_min
+from KOKUMUSIC.utils.inline import stream_markup_timerr, telegram_markup_timer
 
 from ..admins.callback import wrong
 
