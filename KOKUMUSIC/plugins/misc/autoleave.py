@@ -72,7 +72,3 @@ async def main():
         auto_leave(),
         auto_end()
     )
-
-# Run the main function
-if __name__ == "__main__":
-    asyncio.run(main())
