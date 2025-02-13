@@ -103,6 +103,9 @@ def __list_all_modules():
                 # Add the external repo to the system path
                 sys.path.append(EXTERNAL_REPO_PATH)
 
+                # Debugging: Print sys.path to ensure the plugins directory is included
+                print("Current sys.path:", sys.path)
+
                 # Dynamically import the `plugins` package
                 import plugins
 
