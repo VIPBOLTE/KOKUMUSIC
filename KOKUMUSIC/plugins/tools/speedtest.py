@@ -4,8 +4,8 @@ import speedtest
 from pyrogram import filters
 
 from strings import get_command
-from ChampuMusic import app
-from ChampuMusic.misc import SUDOERS
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
 
 # Commands
 SPEEDTEST_COMMAND = get_command("SPEEDTEST_COMMAND")
