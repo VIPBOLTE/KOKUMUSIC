@@ -11,10 +11,10 @@ from config import (
     TELEGRAM_VIDEO_URL,
     adminlist,
 )
-from ChampuMusic import YouTube, app
-from ChampuMusic.core.call import Champu
-from ChampuMusic.misc import SUDOERS, db
-from ChampuMusic.utils.database import (
+from KOKUMUSIC import YouTube, app
+from KOKUMUSIC.core.call import KOKU 
+from KOKUMUSIC.misc import SUDOERS, db
+from KOKUMUSIC.utils.database import (
     is_active_chat,
     is_music_playing,
     is_muted,
@@ -25,9 +25,9 @@ from ChampuMusic.utils.database import (
     mute_on,
     set_loop,
 )
-from ChampuMusic.utils.decorators.language import languageCB
-from ChampuMusic.utils.formatters import seconds_to_min
-from ChampuMusic.utils.inline import (
+from KOKUMUSIC.utils.decorators.language import languageCB
+from KOKUMUSIC.utils.formatters import seconds_to_min
+from KOKUMUSIC.utils.inline import (
     close_markup,
     panel_markup_1,
     panel_markup_2,
@@ -37,9 +37,9 @@ from ChampuMusic.utils.inline import (
     stream_markup,
     stream_markup2,
 )
-from ChampuMusic.utils.inline.play import stream_markup
-from ChampuMusic.utils.stream.autoclear import auto_clean
-from ChampuMusic.utils.thumbnails import get_thumb
+from KOKUMUSIC.utils.inline.play import stream_markup
+from KOKUMUSIC.utils.stream.autoclear import auto_clean
+from KOKUMUSIC.utils.thumbnails import get_thumb
 
 wrong = {}
 downvote = {}
@@ -307,7 +307,7 @@ async def del_back_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_3"], show_alert=True)
         await CallbackQuery.answer()
         await music_on(chat_id)
-        await Champu.resume_stream(chat_id)
+        await KOKU.resume_stream(chat_id)
         buttons_resume = [
             [
                 InlineKeyboardButton(
@@ -331,7 +331,7 @@ async def del_back_playlist(client, CallbackQuery, _):
         )
     elif command == "Stop" or command == "End":
         await CallbackQuery.answer()
-        await Champu.st_stream(chat_id)
+        await KOKU.st_stream(chat_id)
         await set_loop(chat_id, 0)
         await CallbackQuery.message.reply_text(
             _["admin_9"].format(mention), reply_markup=close_markup(_)
@@ -342,14 +342,14 @@ async def del_back_playlist(client, CallbackQuery, _):
             return await CallbackQuery.answer(_["admin_5"], show_alert=True)
         await CallbackQuery.answer()
         await mute_on(chat_id)
-        await Champu.mute_stream(chat_id)
+        await KOKU.mute_stream(chat_id)
         await CallbackQuery.message.reply_text(_["admin_6"].format(mention))
     elif command == "Unmute":
         if not await is_muted(chat_id):
             return await CallbackQuery.answer(_["admin_7"], show_alert=True)
         await CallbackQuery.answer()
         await mute_off(chat_id)
-        await Champu.unmute_stream(chat_id)
+        await KOKU.unmute_stream(chat_id)
         await CallbackQuery.message.reply_text(_["admin_8"].format(mention))
     elif command == "Loop":
         await CallbackQuery.answer()
