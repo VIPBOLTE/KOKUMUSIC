@@ -3,10 +3,10 @@ import asyncio
 from pyrogram.enums import ChatType
 
 import config
-from ChampuMusic import app
-from ChampuMusic.core.call import Champu
-from ChampuMusic.core.call import _st_ as clean
-from ChampuMusic.utils.database import (
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import KOKU
+from KOKUMUSIC.core.call import _st_ as clean
+from KOKUMUSIC.utils.database import (
     get_active_chats,
     get_assistant,
     get_client,
@@ -85,7 +85,7 @@ async def auto_end():
 
                     if len(call_participants_id) <= 1:
                         await ok.delete()
-                        await Champu.stop_stream(chat_id)
+                        await KOKU.stop_stream(chat_id)
                         await app.send_message(
                             chat_id,
                             "» Nᴏ ᴏɴᴇ ᴊᴏɪɴᴇᴅ ᴛʜᴇ ᴠᴏɪᴄᴇ ᴄʜᴀᴛ, sᴏ ᴛʜᴇ sᴏɴɢ ɪs ᴇɴᴅɪɴɢ ᴅᴜᴇ ᴛᴏ ɪɴᴀᴄᴛɪᴠɪᴛʏ.",
