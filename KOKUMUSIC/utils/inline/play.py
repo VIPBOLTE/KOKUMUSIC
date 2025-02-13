@@ -313,8 +313,8 @@ import math
 
 from pyrogram.types import InlineKeyboardButton
 
-from ChampuMusic import app
-from ChampuMusic.utils.formatters import time_to_seconds
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.formatters import time_to_seconds
 
 
 def track_markup(_, videoid, user_id, channel, fplay):
