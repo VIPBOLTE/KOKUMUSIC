@@ -4,9 +4,9 @@ from pyrogram.types import InlineKeyboardButton, Message
 
 from config import BANNED_USERS
 from strings import get_command, get_string, languages_present
-from ChampuMusic import app
-from ChampuMusic.utils.database import get_lang, set_lang
-from ChampuMusic.utils.decorators import ActualAdminCB, language, languageCB
+from KOKUMUSIC import app
+from KOKUMUSIC.utils.database import get_lang, set_lang
+from KOKUMUSIC.utils.decorators import ActualAdminCB, language, languageCB
 
 # Languages Available
 
