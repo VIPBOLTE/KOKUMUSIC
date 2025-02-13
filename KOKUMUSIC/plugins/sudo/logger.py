@@ -2,10 +2,10 @@ from pyrogram import filters
 
 import config
 from strings import get_command
-from ChampuMusic import app
-from ChampuMusic.misc import SUDOERS
-from ChampuMusic.utils.database import add_off, add_on
-from ChampuMusic.utils.decorators.language import language
+from KOKUMUSIC import app
+from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.utils.database import add_off, add_on
+from KOKUMUSIC.utils.decorators.language import language
 
 # Commands
 LOGGER_COMMAND = get_command("LOGGER_COMMAND")
