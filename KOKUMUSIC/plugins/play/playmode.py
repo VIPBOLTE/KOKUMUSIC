@@ -4,7 +4,7 @@ from pyrogram.types import InlineKeyboardMarkup, Message
 from config import BANNED_USERS
 from strings import get_command
 from KOKUMUSIC import app
-from KOKUMUSICutils.database import get_playmode, get_playtype, is_nonadmin_chat
+from KOKUMUSIC.utils.database import get_playmode, get_playtype, is_nonadmin_chat
 from KOKUMUSIC.utils.decorators import language
 from KOKUMUSIC.utils.inline.settings import playmode_users_markup
 
