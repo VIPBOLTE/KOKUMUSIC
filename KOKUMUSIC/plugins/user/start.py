@@ -35,7 +35,7 @@ from KOKUMUSIC.utils.inline import alive_panel, music_start_panel, start_pannel
 
 from KOKUMUSIC.plugins.bot.help import paginate_modules
 
-loop = asyncio.get_running_loop()
+loop = asyncio.get_event_loop()
 
 STICKER = [
     "CAACAgUAAx0CepnpNQABATUjZypavrymDoERINkF-M3u9JDQ6K8AAhoDAAIOnnlVpyrYiDnVgWYeBA",
