@@ -2,13 +2,13 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from config import BANNED_USERS, adminlist
-from ChampuMusic import app
-from ChampuMusic.core.call import Champu
-from ChampuMusic.misc import SUDOERS, db
-from ChampuMusic.utils import AdminRightsCheck
-from ChampuMusic.utils.database import is_active_chat, is_nonadmin_chat
-from ChampuMusic.utils.decorators.language import languageCB
-from ChampuMusic.utils.inline import close_markup, speed_markup
+from KOKUMUSIC import app
+from KOKUMUSIC.core.call import Champu
+from KOKUMUSIC.misc import SUDOERS, db
+from KOKUMUSIC.utils import AdminRightsCheck
+from KOKUMUSIC.utils.database import is_active_chat, is_nonadmin_chat
+from KOKUMUSIC.utils.decorators.language import languageCB
+from KOKUMUSIC.utils.inline import close_markup, speed_markup
 
 checker = []
 
