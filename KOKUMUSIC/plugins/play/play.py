@@ -10,13 +10,13 @@ from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
 from config import BANNED_USERS, LOGGER_ID, OWNER_ID, lyrical
-from ChampuMusic import LOGGER, Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app, EMOJIS
+from KOKUMUSIC import LOGGER, Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app, EMOJIS
 from KOKUMUSIC.core.call import KOKU
 from KOKUMUSIC.utils import seconds_to_min, time_to_seconds
 from KOKUMUSIC.utils.channelplay import get_channeplayCB
 from KOKUMUSIC.utils.database import add_served_chat, get_assistant, is_video_allowed
 from KOKUMUSIC.utils.decorators.language import languageCB
-from KOKUMUSICutils.decorators.play import PlayWrapper
+from KOKUMUSIC.utils.decorators.play import PlayWrapper
 from KOKUMUSIC.utils.formatters import formats
 from KOKUMUSIC.utils.inline.play import (
     livestream_markup,
