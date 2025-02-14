@@ -50,7 +50,7 @@ def crop_center_circle(img, output_size, border, crop_scale=1.5):
     final_img.paste(img, (border, border), mask)
     return final_img
 
-async def generate_thumbnail(videoid):
+async def get_thumb(videoid):
     cache_path = f"{CACHE_DIR}/{videoid}_v4.png"
     if os.path.isfile(cache_path):
         return cache_path
