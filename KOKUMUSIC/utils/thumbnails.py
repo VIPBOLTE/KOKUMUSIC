@@ -45,16 +45,13 @@ def crop_center_circle(img, output_size, border, crop_scale=1.5):
     
     img = img.resize((output_size - 2*border, output_size - 2*border))
     
-    
     final_img = Image.new("RGBA", (output_size, output_size), "white")
-    
     
     mask_main = Image.new("L", (output_size - 2*border, output_size - 2*border), 0)
     draw_main = ImageDraw.Draw(mask_main)
     draw_main.ellipse((0, 0, output_size - 2*border, output_size - 2*border), fill=255)
     
     final_img.paste(img, (border, border), mask_main)
-    
     
     mask_border = Image.new("L", (output_size, output_size), 0)
     draw_border = ImageDraw.Draw(mask_border)
@@ -64,11 +61,10 @@ def crop_center_circle(img, output_size, border, crop_scale=1.5):
     
     return result
 
-
-
-async def get_thumb(videoid):
-    if os.path.isfile(f"cache/{videoid}_v4.png"):
-        return f"cache/{videoid}_v4.png"
+async def gen_thumb(videoid):
+    img_path = f"cache/{videoid}_v4.png"
+    if os.path.isfile(img_path):
+        return img_path
 
     url = f"https://www.youtube.com/watch?v={videoid}"
     results = VideosSearch(url, limit=1)
@@ -107,10 +103,13 @@ async def get_thumb(videoid):
     enhancer = ImageEnhance.Brightness(background)
     background = enhancer.enhance(0.6)
     draw = ImageDraw.Draw(background)
-    arial = ImageFont.truetype("assets/KOKU/font2.ttf", 30)
-    font = ImageFont.truetype("assets/KOKU/font.ttf", 30)
-    title_font = ImageFont.truetype("assets/KOKU/font3.ttf", 45)
 
+    # Define the common path for fonts and other assets
+    assets_path = "assets/KOKU"
+    
+    arial = ImageFont.truetype(f"{assets_path}/font2.ttf", 30)
+    font = ImageFont.truetype(f"{assets_path}/font.ttf", 30)
+    title_font = ImageFont.truetype(f"{assets_path}/font3.ttf", 45)
 
     circle_thumbnail = crop_center_circle(youtube, 400, 20)
     circle_thumbnail = circle_thumbnail.resize((400, 400))
@@ -124,24 +123,19 @@ async def get_thumb(videoid):
     draw.text((text_x_position, 230), title1[1], fill=(255, 255, 255), font=title_font)
     draw.text((text_x_position, 320), f"{channel}  |  {views[:23]}", (255, 255, 255), font=arial)
 
-    
     line_length = 580  
 
-    
     red_length = int(line_length * 0.6)
     white_length = line_length - red_length
 
-    
     start_point_red = (text_x_position, 380)
     end_point_red = (text_x_position + red_length, 380)
     draw.line([start_point_red, end_point_red], fill="red", width=9)
 
-    
     start_point_white = (text_x_position + red_length, 380)
     end_point_white = (text_x_position + line_length, 380)
     draw.line([start_point_white, end_point_white], fill="white", width=8)
 
-    
     circle_radius = 10 
     circle_position = (end_point_red[0], end_point_red[1])
     draw.ellipse([circle_position[0] - circle_radius, circle_position[1] - circle_radius,
@@ -149,7 +143,7 @@ async def get_thumb(videoid):
     draw.text((text_x_position, 400), "00:00", (255, 255, 255), font=arial)
     draw.text((1080, 400), duration, (255, 255, 255), font=arial)
 
-    play_icons = Image.open("assets/KOKU/play_icons.png")
+    play_icons = Image.open(f"{assets_path}/play_icons.png")
     play_icons = play_icons.resize((580, 62))
     background.paste(play_icons, (text_x_position, 450), play_icons)
 
@@ -157,5 +151,6 @@ async def get_thumb(videoid):
         os.remove(f"cache/thumb{videoid}.png")
     except:
         pass
-    background.save(f"cache/{videoid}_v4.png")
-    return f"cache/{videoid}_v4.png"
+    
+    background.save(img_path)
+    return img_path
