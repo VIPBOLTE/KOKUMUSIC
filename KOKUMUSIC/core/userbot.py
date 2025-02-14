@@ -167,10 +167,10 @@ class Userbot(Client):
         if config.STRING5:
             await self.five.start()
             try:
-                await self.five.join_chat("TheShivanshu")
-                await self.five.join_chat("TheChampuClub")
-                await self.five.join_chat("akaChampu")
-                await self.five.join_chat("TheChampu")
+                await self.four.join_chat("LOVING_SOCIETY")
+                await self.four.join_chat("goku_groupz")
+                await self.four.join_chat("channelz_k")
+                await self.four.join_chat("bklok")
             except:
                 pass
             assistants.append(5)
