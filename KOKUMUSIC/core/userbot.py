@@ -1,7 +1,7 @@
 import asyncio
 from os import getenv
 from typing import Callable, Optional
-
+import pyrogram 
 from dotenv import load_dotenv
 from pyrogram import Client
 
