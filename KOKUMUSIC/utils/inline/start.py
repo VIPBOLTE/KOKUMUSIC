@@ -62,6 +62,5 @@ def music_start_panel(_):
             InlineKeyboardButton(text="˹ᴀʙᴏᴜᴛ˼", callback_data="about"),
             InlineKeyboardButton(text="˹sᴜᴘᴘᴏʀᴛ˼", callback_data="support"),
         ],
-
     ]
     return buttons
