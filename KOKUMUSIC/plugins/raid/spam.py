@@ -3,7 +3,7 @@ import asyncio
 from pyrogram import filters
 from pyrogram import filters, Client
 from pyrogram.types import Message
-from BADMUSIC.misc import SUDOERS
+from KOKUMUSIC.misc import SUDOERS
 
 spamTask = {}
 
