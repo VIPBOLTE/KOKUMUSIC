@@ -212,7 +212,7 @@ def on_cmd(
     filters: Optional[pyrogram.filters.Filter] = None, group: int = 0
 ) -> Callable:
     def decorator(func: Callable) -> Callable:
-        for client in clients:
+        for client in assistantids:
             client.add_handler(pyrogram.handlers.MessageHandler(func, filters), group)
         return func
 
