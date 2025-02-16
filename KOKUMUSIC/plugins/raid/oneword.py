@@ -7,8 +7,8 @@ from pyrogram.types import Message
 from pyrogram import filters, Client
 
 # import 
-from BADMUSIC.misc import SUDOERS as SUDO_USER
-from BADMUSIC.cplugin.utils.data import RAID, PBIRAID, OneWord, HIRAID, PORM, EMOJI, GROUP, VERIFIED_USERS
+from KOKUMUSIC.misc import SUDOERS as SUDO_USER
+from KOKUMUSIC.cplugin.utils.data import RAID, PBIRAID, OneWord, HIRAID, PORM, EMOJI, GROUP, VERIFIED_USERS
 
 
 
