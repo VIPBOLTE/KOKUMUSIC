@@ -17,6 +17,7 @@ STRING_SESSION = getenv("STRING_SESSION", "")
 
 assistants = []
 assistantids = []
+clients = []
 
 
 class Userbot(Client):
@@ -217,7 +218,7 @@ def on_cmd(
     filters: Optional[pyrogram.filters.Filter] = None, group: int = 0
 ) -> Callable:
     def decorator(func: Callable) -> Callable:
-        for client in assistantids:
+        for client in clients:
             client.add_handler(pyrogram.handlers.MessageHandler(func, filters), group)
         return func
 
