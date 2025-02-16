@@ -6,7 +6,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from os import getenv
 SUDO_USER = list(map(int, getenv("SUDO_USERS", "5595153270").split()))
-from KOKUMUSIC.cplugins.utils.data import *
+from KOKUMUSIC.cplugin.utils.data import *
 
 
 @Client.on_message(filters.command(["raid", "r"], ".") & (filters.me | filters.user(SUDO_USER)))
