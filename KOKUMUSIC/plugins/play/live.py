@@ -1,3 +1,4 @@
+import random
 from pyrogram import filters
 
 from config import BANNED_USERS
