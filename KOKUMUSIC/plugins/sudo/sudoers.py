@@ -1,12 +1,12 @@
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
-from ChampuMusic import app
+from KOKUMUSIC import app
 from pyrogram.types import InputMediaVideo
-from ChampuMusic.misc import SUDOERS, SPECIAL_ID
-from ChampuMusic.utils.database import add_sudo, remove_sudo
-from ChampuMusic.utils.decorators.language import language
-from ChampuMusic.utils.functions import extract_user
-from ChampuMusic.utils.inline import close_markup
+from KOKUMUSIC.misc import SUDOERS, SPECIAL_ID
+from KOKUMUSIC.utils.database import add_sudo, remove_sudo
+from KOKUMUSIC.utils.decorators.language import language
+from KOKUMUSIC.utils.functions import extract_user
+from KOKUMUSIC.utils.inline import close_markup
 from config import BANNED_USERS, OWNER_ID
 import logging
 
