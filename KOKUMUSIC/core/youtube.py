@@ -1,13 +1,12 @@
 import json
 import os
 
-YOUTUBE = {
-    "access_token": "ya29.a0AeDClZCWhJmZVa8F3dekhUnsqJD2rbVZbqRW8JfIDHun7O4dyzQdMe6KJ0SHOVuxxp0P7pW499JTVYgToi4TvtXQEKj_I5Bd831Zqj5_ZQ8u6qNX9IH8-ul2vA8zaOm-FwKdWcXJNcZYlssvpYAI6uEJ84oZJS_gq8MwcV-eMpVW_U64F-WpaCgYKARESARISFQHGX2MiS96BDOnz2FcmBr99MFTPEg0187",
-    "expires": 1730055102.644152,
-    "refresh_token": "1//05_QJ5UjnairhCgYIARAAGAUSNgF-L9Irc5KD12RJqb_KIFaNzGGcnY4dmo8BQUkLNaMzypntz4uYWKcamZ4p95LpikruLy7IFw",
+YOUTUBE ={
+    "access_token": "ya29.a0AXeO80QwprAOOPWp8JaKtmejYsbpO5bSV1TU3zYqybXGOaZOPm8o3LeFbNdybYR6lzgj1eqNvVjZ9K943LQ3BnYBLbnb6orx6DuV_m3KqDMRLOxX_LbkAEgMc__Al9_NHaQuXjA01J6prtp4j58kTOULHMUxtZAkjPXvCfB61r4Tk4VyjKEdaCgYKAdESARESFQHGX2Min8LCgeASZOUlDFoPKRkmug0187",
+    "expires": 1740612939.934953,
+    "refresh_token": "1//0571wCZwVsXn3CgYIARAAGAUSNwF-L9IrSNNUc2qF2eHUyPN8p4EEVMSh-ck14K6hx0RPssFlp2uOLqL2JTfM6UGbSwNFm_liIt8",
     "token_type": "Bearer"
 }
-
 
 def vipboy():
     TOKEN_DATA = os.getenv("TOKEN_DATA")
