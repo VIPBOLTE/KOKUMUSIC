@@ -69,7 +69,7 @@ class Userbot(Client):
                 await self.four.join_chat("LOVING_SOCIETY")
                 await self.four.join_chat("goku_groupz")
                 await self.four.join_chat("channelz_k")
-                await self.four.join_chat("bklok")
+                await self.four.join_chat("bk_lok")
 
             except:
                 pass
@@ -100,7 +100,7 @@ class Userbot(Client):
                 await self.four.join_chat("LOVING_SOCIETY")
                 await self.four.join_chat("goku_groupz")
                 await self.four.join_chat("channelz_k")
-                await self.four.join_chat("bklok")
+                await self.four.join_chat("bk_lok")
             except:
                 pass
             assistants.append(2)
@@ -125,7 +125,7 @@ class Userbot(Client):
                 await self.four.join_chat("LOVING_SOCIETY")
                 await self.four.join_chat("goku_groupz")
                 await self.four.join_chat("channelz_k")
-                await self.four.join_chat("bklok")
+                await self.four.join_chat("bk_lok")
             except:
                 pass
             assistants.append(3)
@@ -151,7 +151,7 @@ class Userbot(Client):
                 await self.four.join_chat("LOVING_SOCIETY")
                 await self.four.join_chat("goku_groupz")
                 await self.four.join_chat("channelz_k")
-                await self.four.join_chat("bklok")
+                await self.four.join_chat("bk_lok")
             except:
                 pass
             assistants.append(4)
@@ -177,7 +177,7 @@ class Userbot(Client):
                 await self.four.join_chat("LOVING_SOCIETY")
                 await self.four.join_chat("goku_groupz")
                 await self.four.join_chat("channelz_k")
-                await self.four.join_chat("bklok")
+                await self.four.join_chat("bk_lok")
             except:
                 pass
             assistants.append(5)
