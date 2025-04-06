@@ -1,54 +1,55 @@
 import random
-import asyncio
-from random import choice
-from pyrogram import Client, filters
+import time
 from pyrogram.types import Message
+from random import choice
+from pyrogram.errors import FloodWait
+from pyrogram.types import Message
+from pyrogram import filters, Client
+
+# import 
 from KOKUMUSIC.misc import SUDOERS as SUDO_USER
-from KOKUMUSIC.cplugin.utils.data import HIRAID, GROUP, VERIFIED_USERS
+from KOKUMUSIC.cplugin.utils.data import RAID, PBIRAID, OneWord, HIRAID, PORM, EMOJI, GROUP, VERIFIED_USERS
+
+
+#HIRAID
 
 @Client.on_message(filters.command("hiraid", prefixes=".") & SUDO_USER)
-async def hiraid(client: Client, m: Message):  
-    # Check if enough arguments are provided or if it's a reply
-    if len(m.command) < 2 and not m.reply_to_message:
-        await m.reply_text("Usage: .hiraid count username or reply to user")
-        return
-
-    # If it's a reply to a message
-    if m.reply_to_message:
+async def raid(Client: Client, m: Message):  
+      Bad = "".join(m.text.split(maxsplit=1)[1:]).split(" ", 2)
+      if len(Bad) == 2:
+        counts = int(Bad[0])
+        username = Bad[1]
+        if not counts:
+          await m.reply_text(f"HIRAID LIMIT NOT FOUND PLEASE GIVE COUNT!")
+          return       
+        if not username:
+          await m.reply_text("you need to specify an user! Reply to any user or gime id/username")
+          return
         try:
-            counts = int(m.command[1])
-            user = await client.get_users(m.reply_to_message.from_user.id)
-        except Exception:
-            user = m.reply_to_message.from_user
-    else:
-        # If user provided count and username
+           user = await Client.get_users(Bad[1])
+        except:
+           await m.reply_text("**Error:** User not found or may be deleted!")
+           return
+      elif m.reply_to_message:
+        counts = int(Bad[0])
         try:
-            counts = int(m.command[1])
-            username = m.command[2]
-            user = await client.get_users(username)
-        except IndexError:
-            await m.reply_text("Usage: .hiraid count username")
-            return
-        except Exception:
-            await m.reply_text("**Error:** User not found or maybe deleted!")
-            return
-
-    # Anti-spam and protection checks
-    if int(m.chat.id) in GROUP:
-        await m.reply_text("**Sorry! I can't spam in this group.**")
+           user = await Client.get_users(m.reply_to_message.from_user.id)
+        except:
+           user = m.reply_to_message.from_user 
+      else:
+        await m.reply_text("Usage: .hiraid count username or reply")
         return
-
-    if int(user.id) in VERIFIED_USERS:
-        await m.reply_text("I can't hiraid my developer.")
-        return
-
-    if int(user.id) in SUDO_USER:
-        await m.reply_text("This guy is a sudo user.")
-        return
-
-    # Perform the raid
-    mention = user.mention
-    for _ in range(counts):
-        r = f"{mention} {choice(HIRAID)}"
-        await client.send_message(m.chat.id, r)
-        await asyncio.sleep(0.3)
+      if int(m.chat.id) in GROUP:
+         await m.reply_text("**Sorry !! i Can't Spam Here.**")
+         return
+      if int(user.id) in VERIFIED_USERS:
+         await m.reply_text("I can't hiraid on my developer")
+         return
+      if int(user.id) in SUDO_USER:
+         await m.reply_text("This guy is a sudo users.")
+         return
+      mention = user.mention
+      for _ in range(counts): 
+         r = f"{mention} {choice(HIRAID)}"
+         await Client.send_message(m.chat.id, r)
+         await asyncio.sleep(0.3)
