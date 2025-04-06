@@ -54,6 +54,3 @@ def register_spam_handler(listener_client: Client):
             except Exception as e:
                 await message.reply(f"⚠️ Failed to send message: {e}")
 
-# Entry point
-if __name__ == "__main__":
-    asyncio.run(initialize_clients())
