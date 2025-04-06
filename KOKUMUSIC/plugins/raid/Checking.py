@@ -34,7 +34,6 @@ def register_spam_handler(listener_client: Client):
                 await message.reply(f"⚠️ Failed to send message: {e}")
 
 
-async def main():
     global clients
     clients = [
         Client("GOKUAss1", api_id=API_ID, api_hash=API_HASH, session_string=STRING1),
@@ -52,6 +51,3 @@ async def main():
 
     await clients[0].idle()  # Keeps the bot running
 
-
-if __name__ == "__main__":
-    asyncio.run(main())
