@@ -7,7 +7,6 @@ OWNER_ID = 5595153270  # Your OWNER_ID
 clients = []
 ACTIVE_SESSIONS = [1, 2, 3]  # Active assistant session numbers
 
-async def initialize_clients():
     """Initialize all Pyrogram assistant clients."""
     global clients
     clients = [
