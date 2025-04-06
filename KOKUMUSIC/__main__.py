@@ -55,6 +55,5 @@ async def init():
 
 
 if __name__ == "__main__":
-    asyncio.run(initialize_clients())
     asyncio.get_event_loop_policy().get_event_loop().run_until_complete(init())
     LOGGER("KOKUMUSIC").info("sᴛᴏᴘᴘɪɴɢ ᴄʜᴀᴍᴘᴜᴍᴜsɪᴄ! ɢᴏᴏᴅʙʏᴇ")
