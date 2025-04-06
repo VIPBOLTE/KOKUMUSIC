@@ -9,11 +9,11 @@ async def initialize_clients():
     """Ensure all clients are initialized properly."""
     global clients
     clients = [
-        Client("GOKUAss1", api_id=12345, api_hash="your_api_hash", session_string="session_1"),
-        Client("GOKUAss2", api_id=12345, api_hash="your_api_hash", session_string="session_2"),
-        Client("GOKUAss3", api_id=12345, api_hash="your_api_hash", session_string="session_3"),
-        Client("GOKUAss4", api_id=12345, api_hash="your_api_hash", session_string="session_4"),
-        Client("GOKUAss5", api_id=12345, api_hash="your_api_hash", session_string="session_5"),
+        Client("GOKUAss1", api_id=API_ID, api_hash=API_HASH, session_string=),
+        Client("GOKUAss2", api_id=API_ID, api_hash=API_HASH, session_string="session_2"),
+        Client("GOKUAss3", api_id=API_ID, api_hash=API_HASH, session_string="session_3"),
+        Client("GOKUAss4", api_id=API_ID, api_hash=API_HASH, session_string="session_4"),
+        Client("GOKUAss5", api_id=API_ID, api_hash=API_HASH, session_string="session_5"),
     ]
 
     # Start all clients
