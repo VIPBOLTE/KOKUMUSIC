@@ -117,30 +117,32 @@ async def hiraid(Client: Client, m: Message):
         await asyncio.sleep(0.3)
 
 
-# RAID
 @Client.on_message(filters.command("raid", prefixes=".") & SUDO_USER)
 async def raid(Client: Client, m: Message):
-    Bad = "".join(m.text.split(maxsplit=1)[1:]).split(" ", 2)
-    if len(Bad) == 2:
-        counts = int(Bad[0])
-        username = Bad[1]
-        try:
+    if len(m.command) < 3 and not m.reply_to_message:
+        await m.reply_text("Usage: .raid count username or reply to user.")
+        return
+
+    try:
+        if m.reply_to_message:
+            counts = int(m.command[1])
+            user = m.reply_to_message.from_user
+        else:
+            counts = int(m.command[1])
+            username = m.command[2]
             user = await Client.get_users(username)
-        except:
-            await m.reply_text("**Error:** User not found or may be deleted!")
-            return
-    elif m.reply_to_message:
-        counts = int(Bad[0])
-        user = m.reply_to_message.from_user
-    else:
-        await m.reply_text("Usage: .raid count username or reply")
+    except (IndexError, ValueError):
+        await m.reply_text("Please provide a valid count and username.")
+        return
+    except Exception:
+        await m.reply_text("User not found or deleted.")
         return
 
     if int(m.chat.id) in GROUP:
         await m.reply_text("**Sorry !! I can't spam here.**")
         return
     if int(user.id) in VERIFIED_USERS:
-        await m.reply_text("I can't raid on my developer.")
+        await m.reply_text("I can't raid my developer.")
         return
     if int(user.id) in SUDO_USER:
         await m.reply_text("This guy is a sudo user.")
