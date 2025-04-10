@@ -8,8 +8,6 @@ from KOKUMUSIC.cplugin.utils.data import RAID, PBIRAID, OneWord, HIRAID, PORM, E
 
 ACTIVATE_RLIST = []
 
-
-@Client.on_message(filters.command("rr", prefixes=".") & SUDO_USER)
 @Client.on_message(filters.command("rr", prefixes=".") & SUDO_USER)
 async def rr(client: Client, message: Message):
     if message.from_user and message.from_user.is_self:
