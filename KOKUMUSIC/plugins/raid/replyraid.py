@@ -10,16 +10,22 @@ ACTIVATE_RLIST = []
 
 
 @Client.on_message(filters.command("rr", prefixes=".") & SUDO_USER)
+@Client.on_message(filters.command("rr", prefixes=".") & SUDO_USER)
 async def rr(client: Client, message: Message):
-    r = await message.edit_text("**Processing**")
+    if message.from_user and message.from_user.is_self:
+        r = await message.edit_text("**Processing**")
+    else:
+        r = await message.reply_text("**Processing**")
+    
     reply = message.reply_to_message
     if reply:
         user = reply.from_user.id
     else:
-        user = message.text.split(None, 1)[1]
-        if not user:
+        if len(message.command) < 2:
             await r.edit("**Provide Me A USER_ID or reply to someone**")
             return
+        user = message.command[1]
+
     user = await client.get_users(user)
     if int(message.chat.id) in GROUP:
         await r.edit("`You Cannot Spam In Developers' Chat`")
@@ -33,24 +39,32 @@ async def rr(client: Client, message: Message):
     elif int(user.id) in ACTIVATE_RLIST:
         await r.edit("User Already in Raidlist.")
         return
+
     ACTIVATE_RLIST.append(user.id)
     await r.edit(f"**Replyraid Activated On {user.first_name} Successfully ✅**")
 
+
 @Client.on_message(filters.command("drr", prefixes=".") & SUDO_USER)
 async def drr(client: Client, message: Message):
-    r = await message.edit_text("**Processing**")
+    if message.from_user and message.from_user.is_self:
+        r = await message.edit_text("**Processing**")
+    else:
+        r = await message.reply_text("**Processing**")
+
     reply = message.reply_to_message
     if reply:
         user = reply.from_user.id
     else:
-        user = message.text.split(None, 1)[1]
-        if not user:
+        if len(message.command) < 2:
             await r.edit("Provide me username/userid or reply to user for deactivating replyraid")
             return
+        user = message.command[1]
+
     user = await client.get_users(user)
     if int(user.id) not in ACTIVATE_RLIST:
         await r.edit("User Not in Replyraid.")
         return
+
     ACTIVATE_RLIST.remove(user.id)
     await r.edit(f"**Reply Raid has Been Removed {user.first_name}, enjoy!**")
 
