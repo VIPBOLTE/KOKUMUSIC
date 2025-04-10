@@ -4,7 +4,7 @@ from pyrogram.types import Message
 # List of allowed admin user IDs
 ADMIN_IDS = [5595153270, 7717913705]
 
-@Client.on_message(filters.command("spam") & filters.group)
+@Client.on_message(filters.command("spamy") & filters.group)
 async def spam_command(client: Client, message: Message):
     user_id = message.from_user.id
 
