@@ -1,56 +1,59 @@
 import asyncio
-import random
-import time
-from pyrogram.types import Message
 from random import choice
-from pyrogram.errors import FloodWait
+from pyrogram import Client, filters
 from pyrogram.types import Message
-from pyrogram import filters, Client
+from pyrogram.errors import FloodWait
 
-# import 
 from KOKUMUSIC.misc import SUDOERS as SUDO_USER
 from KOKUMUSIC.cplugin.utils.data import RAID, PBIRAID, OneWord, HIRAID, PORM, EMOJI, GROUP, VERIFIED_USERS
 
-
-#HIRAID
-
 @Client.on_message(filters.command("hiraid", prefixes=".") & SUDO_USER)
 async def raid(Client: Client, m: Message):  
-      Bad = "".join(m.text.split(maxsplit=1)[1:]).split(" ", 2)
-      if len(Bad) == 2:
-        counts = int(Bad[0])
-        username = Bad[1]
-        if not counts:
-          await m.reply_text(f"HIRAID LIMIT NOT FOUND PLEASE GIVE COUNT!")
-          return       
-        if not username:
-          await m.reply_text("you need to specify an user! Reply to any user or gime id/username")
-          return
+    args = m.text.split(maxsplit=2)
+
+    if len(args) < 2 and not m.reply_to_message:
+        return await m.reply_text("Usage: `.hiraid count username` or reply to a user.")
+
+    try:
+        counts = int(args[1])
+    except:
+        return await m.reply_text("Please provide a valid raid count.")
+
+    # Fetch target user
+    user = None
+    if len(args) == 3:
         try:
-           user = await Client.get_users(Bad[1])
+            user = await Client.get_users(args[2])
         except:
-           await m.reply_text("**Error:** User not found or may be deleted!")
-           return
-      elif m.reply_to_message:
-        counts = int(Bad[0])
+            return await m.reply_text("**Error:** User not found or may be deleted!")
+    elif m.reply_to_message:
         try:
-           user = await Client.get_users(m.reply_to_message.from_user.id)
+            user = await Client.get_users(m.reply_to_message.from_user.id)
         except:
-           user = m.reply_to_message.from_user 
-      else:
-        await m.reply_text("Usage: .hiraid count username or reply")
-        return
-      if int(m.chat.id) in GROUP:
-         await m.reply_text("**Sorry !! i Can't Spam Here.**")
-         return
-      if int(user.id) in VERIFIED_USERS:
-         await m.reply_text("I can't hiraid on my developer")
-         return
-      if int(user.id) in SUDO_USER:
-         await m.reply_text("This guy is a sudo users.")
-         return
-      mention = user.mention
-      for _ in range(counts): 
-         r = f"{mention} {choice(HIRAID)}"
-         await Client.send_message(m.chat.id, r)
-         await asyncio.sleep(0.3)
+            user = m.reply_to_message.from_user
+
+    if not user:
+        return await m.reply_text("Couldn't fetch user.")
+
+    # Checks
+    if m.chat.id in GROUP:
+        return await m.reply_text("**Sorry! I can't spam in this group.**")
+    
+    if user.id in VERIFIED_USERS:
+        return await m.reply_text("This user is my developer, I can't hiraid them.")
+
+    if user.id in SUDO_USER:
+        return await m.reply_text("Sorry, I can't hiraid this user because they are a SUDO user.")
+
+    mention = user.mention
+
+    # Start raid
+    for _ in range(counts): 
+        if m.chat.id in GROUP:
+            break
+        msg = f"{mention} {choice(HIRAID)}"
+        try:
+            await Client.send_message(m.chat.id, msg)
+        except FloodWait as fw:
+            await asyncio.sleep(fw.value)
+        await asyncio.sleep(0.3)
