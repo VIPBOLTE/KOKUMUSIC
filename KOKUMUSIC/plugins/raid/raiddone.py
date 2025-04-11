@@ -37,12 +37,19 @@ async def emoji(x: Client, e: Message):
         else:
             return await e.reply_text(".AAID 10 <ʀᴇᴘʟʏ ᴛᴏ ᴜꜱᴇʀ ᴏʀ ᴜꜱᴇʀɴᴀᴍᴇ>")
 
+        # Protection for SUDO or VERIFIED users
+        if ok.id in SUDO_USER or ok.id in VERIFIED_USERS:
+            return await e.reply_text("Sorry, I can't raid this user.")
+
         for _ in range(count):
             if chat_id not in RUNNING_AAID:
                 break
             reply = choice(RAID)
             msg = f"[{ok.first_name}](tg://user?id={ok.id}) {reply}"
-            await x.send_message(chat_id, msg)
+            try:
+                await x.send_message(chat_id, msg)
+            except FloodWait as fw:
+                await asyncio.sleep(fw.value)
             await asyncio.sleep(0.1)
 
     except Exception as err:
