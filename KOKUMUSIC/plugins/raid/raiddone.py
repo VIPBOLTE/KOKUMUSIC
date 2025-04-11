@@ -1,13 +1,9 @@
 import asyncio
-import random
-import time
-from pyrogram.types import Message
 from random import choice
+from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from pyrogram.types import Message
-from pyrogram import filters, Client
 
-# import 
 from KOKUMUSIC.misc import SUDOERS as SUDO_USER
 from KOKUMUSIC.cplugin.utils.data import RAID, PBIRAID, OneWord, HIRAID, PORM, EMOJI, GROUP, VERIFIED_USERS
 
@@ -25,7 +21,7 @@ async def emoji(x: Client, e: Message):
     try:
         args = e.text.split(maxsplit=2)
         if len(args) < 2:
-            return await e.reply_text(".AAID 10 <ʀᴇᴘʟʏ ᴛᴏ ᴜꜱᴇʀ ᴏʀ ᴜꜱᴇʀɴᴀᴍᴇ>")
+            return await e.reply_text(".AAID 10 <reply to a user or provide a username>")
 
         count = int(args[1])
         target = args[2] if len(args) > 2 else None
@@ -35,12 +31,15 @@ async def emoji(x: Client, e: Message):
         elif e.reply_to_message:
             ok = await x.get_users(e.reply_to_message.from_user.id)
         else:
-            return await e.reply_text(".AAID 10 <ʀᴇᴘʟʏ ᴛᴏ ᴜꜱᴇʀ ᴏʀ ᴜꜱᴇʀɴᴀᴍᴇ>")
+            return await e.reply_text(".AAID 10 <reply to a user or provide a username>")
 
-        # Protection for SUDO or VERIFIED users
-        if ok.id in SUDO_USER or ok.id in VERIFIED_USERS:
-            return await e.reply_text("Sorry, I can't raid this user.")
+        # Protection checks
+        if ok.id in SUDO_USER:
+            return await e.reply_text("Sorry, I can't raid this user because this user is a SUDO user.")
+        if ok.id in VERIFIED_USERS:
+            return await e.reply_text("This user is my developer, I can't raid them.")
 
+        # Start raid
         for _ in range(count):
             if chat_id not in RUNNING_AAID:
                 break
@@ -56,8 +55,6 @@ async def emoji(x: Client, e: Message):
         await e.reply_text(f"Error: {err}")
     finally:
         RUNNING_AAID.discard(chat_id)
-
-
 
 @Client.on_message(filters.command("stopaaid") & SUDO_USER)
 async def stop_aaid(_, message: Message):
