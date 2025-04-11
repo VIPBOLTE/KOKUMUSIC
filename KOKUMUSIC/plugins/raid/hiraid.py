@@ -5,27 +5,29 @@ from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 
 from KOKUMUSIC.misc import SUDOERS as SUDO_USER
-from KOKUMUSIC.cplugin.utils.data import RAID, PBIRAID, OneWord, HIRAID, PORM, EMOJI, GROUP, VERIFIED_USERS
+from KOKUMUSIC.cplugin.utils.data import HIRAID, VERIFIED_USERS, GROUP
 
 @Client.on_message(filters.command("hiraid", prefixes=".") & SUDO_USER)
 async def raid(Client: Client, m: Message):  
     args = m.text.split(maxsplit=2)
 
+    # No args and no reply = show usage
     if len(args) < 2 and not m.reply_to_message:
-        return await m.reply_text("Usage: `.hiraid count username` or reply to a user.")
+        return await m.reply_text("Usage: `.hiraid count @username` or reply to a user with `.hiraid count`")
 
+    # Parse count
     try:
         counts = int(args[1])
     except:
-        return await m.reply_text("Please provide a valid raid count.")
+        return await m.reply_text("Please provide a valid count. Example: `.hiraid 10 @username`")
 
-    # Fetch target user
+    # Fetch user
     user = None
     if len(args) == 3:
         try:
             user = await Client.get_users(args[2])
         except:
-            return await m.reply_text("**Error:** User not found or may be deleted!")
+            return await m.reply_text("**Error:** Couldn't find the user.")
     elif m.reply_to_message:
         try:
             user = await Client.get_users(m.reply_to_message.from_user.id)
@@ -33,9 +35,9 @@ async def raid(Client: Client, m: Message):
             user = m.reply_to_message.from_user
 
     if not user:
-        return await m.reply_text("Couldn't fetch user.")
+        return await m.reply_text("Could not identify the user to raid.")
 
-    # Checks
+    # Protection checks
     if m.chat.id in GROUP:
         return await m.reply_text("**Sorry! I can't spam in this group.**")
     
@@ -45,9 +47,8 @@ async def raid(Client: Client, m: Message):
     if user.id in SUDO_USER:
         return await m.reply_text("Sorry, I can't hiraid this user because they are a SUDO user.")
 
-    mention = user.mention
-
     # Start raid
+    mention = user.mention
     for _ in range(counts): 
         if m.chat.id in GROUP:
             break
