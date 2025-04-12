@@ -1,7 +1,7 @@
 from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.types import Message
-from Strings import get_string, helpers
+from strings import get_string, helpers
 from KOKUMUSIC import app, SPECIAL_ID
 from pyrogram.types import InputMediaVideo
 from KOKUMUSIC.misc import SUDOERS
