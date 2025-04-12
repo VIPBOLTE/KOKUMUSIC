@@ -4,10 +4,10 @@ from pyrogram.types import Message
 from Strings import get_string, helpers
 from KOKUMUSIC import app, SPECIAL_ID
 from pyrogram.types import InputMediaVideo
-from KOKUMUSIC.music import SUDOERS
+from KOKUMUSIC.misc import SUDOERS
 from KOKUMUSIC.utils.database import add_sudo, remove_sudo
 from KOKUMUSIC.utils.decorators.language import language
-from KOKUMUSIC.utils.extraction import extract_user
+from KOKUMUSIC.utils.functions import extract_user
 from KOKUMUSIC.utils.inline import close_markup
 from config import BANNED_USERS, OWNER_ID
 
