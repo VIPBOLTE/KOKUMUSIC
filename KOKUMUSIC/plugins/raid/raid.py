@@ -55,9 +55,9 @@ async def pbiraid_command(client: Client, message: Message):
     await handle_spam_command(client, message, PBIRAID, "pbiraid")
 
 # ONEWORD
-@Client.on_message(filters.command("oneword", prefixes=".") & SUDO_USER)
-async def oneword_command(client: Client, message: Message):
-    await handle_spam_command(client, message, OneWord, "oneword")
+#@Client.on_message(filters.command("oneword", prefixes=".") & SUDO_USER)
+#async def oneword_command(client: Client, message: Message):
+#    await handle_spam_command(client, message, OneWord, "oneword")
 
 # HIRAID
 @Client.on_message(filters.command("hiraid", prefixes=".") & SUDO_USER)
