@@ -8,38 +8,39 @@ from KOKUMUSIC.cplugin.utils.data import OneWord, GROUP, VERIFIED_USERS
 
 
 @Client.on_message(filters.command("oneword", prefixes=".") & SUDO_USER)
-async def oneword(Client: Client, m: Message):  
-    args = m.text.split()
-    
-    if len(args) < 2 and not m.reply_to_message:
-        return await m.reply_text("Usage: .oneword count username or reply to a user.")
-    
-    try:
-        count = int(args[1])
-    except:
-        return await m.reply_text("Invalid count. Please provide a number.")
+async def oneword(Client: Client, m: Message):
+    Bad = "".join(m.text.split(maxsplit=1)[1:]).split(" ", 2)
 
-    if m.reply_to_message:
-        user = m.reply_to_message.from_user
-    elif len(args) >= 3:
+    if len(Bad) == 2:
         try:
-            user = await Client.get_users(args[2])
-        except:
-            return await m.reply_text("User not found or invalid username.")
+            counts = int(Bad[0])
+            user = await Client.get_users(Bad[1])
+        except Exception:
+            await m.reply_text("User not found or invalid input.")
+            return
+    elif m.reply_to_message:
+        try:
+            counts = int(Bad[0])
+            user = m.reply_to_message.from_user
+        except Exception:
+            await m.reply_text("Please provide count when replying to message.")
+            return
     else:
-        return await m.reply_text("Please reply to a user or provide a username.")
+        await m.reply_text("Usage: .oneword count username or reply")
+        return
 
     if int(m.chat.id) in GROUP:
-        return await m.reply_text("**Sorry! I can't spam in this group.**")
-    
-    if user.id in VERIFIED_USERS:
-        return await m.reply_text("I can't oneword on my developer.")
-    
-    if user.id in SUDO_USER:
-        return await m.reply_text("Sorry, I can't raid this user because they are a sudo user.")
+        await m.reply_text("**Sorry !! I can't spam here.**")
+        return
+    if int(user.id) in VERIFIED_USERS:
+        await m.reply_text("I can't oneword on my developer.")
+        return
+    if int(user.id) in SUDO_USER:
+        await m.reply_text("This guy is a sudo user.")
+        return
 
     mention = user.mention
-    for _ in range(count):
-        msg = f"{mention} {choice(OneWord)}"
-        await Client.send_message(m.chat.id, msg)
-        await asyncio.sleep(0.3)
+    for _ in range(counts):
+        for word in OneWord:
+            await Client.send_message(m.chat.id, f"{mention} {word}")
+            await asyncio.sleep(0.2)  # slow it down to avoid floodwait
