@@ -1,155 +1,65 @@
 import asyncio
-import random
 from random import choice
-from pyrogram import filters, Client
+from pyrogram import Client, filters
 from pyrogram.types import Message
 
-# Imports from your project
 from KOKUMUSIC.misc import SUDOERS as SUDO_USER
 from KOKUMUSIC.cplugin.utils.data import RAID, PBIRAID, OneWord, HIRAID, GROUP, VERIFIED_USERS
 
+async def get_target_user(client, message, args):
+    if message.reply_to_message:
+        return message.reply_to_message.from_user
+    elif len(args) >= 3:
+        try:
+            return await client.get_users(args[2])
+        except:
+            return None
+    return None
+
+async def handle_spam_command(client, message, wordlist, cmd_name):
+    args = message.text.split()
+
+    if len(args) < 2 and not message.reply_to_message:
+        return await message.reply_text(f"Usage: .{cmd_name} count @username or reply")
+
+    try:
+        count = int(args[1])
+    except:
+        return await message.reply_text("Please provide a valid count number.")
+
+    user = await get_target_user(client, message, args)
+    if not user:
+        return await message.reply_text("User not found or reply missing.")
+
+    if message.chat.id in GROUP:
+        return await message.reply_text("**Sorry! I can't spam in this group.**")
+    if user.id in VERIFIED_USERS:
+        return await message.reply_text("This user is my developer.")
+    if user.id in SUDO_USER:
+        return await message.reply_text("Sorry, I can't raid this user because they are a sudo user.")
+
+    mention = user.mention
+    for _ in range(count):
+        msg = f"{mention} {choice(wordlist)}"
+        await client.send_message(message.chat.id, msg)
+        await asyncio.sleep(0.3)
+
+# RAID
+@Client.on_message(filters.command("raid", prefixes=".") & SUDO_USER)
+async def raid_command(client: Client, message: Message):
+    await handle_spam_command(client, message, RAID, "raid")
 
 # PBIRAID
 @Client.on_message(filters.command("pbiraid", prefixes=".") & SUDO_USER)
-async def pbiraid(Client: Client, m: Message):
-    Bad = "".join(m.text.split(maxsplit=1)[1:]).split(" ", 2)
-    if len(Bad) == 2:
-        counts = int(Bad[0])
-        username = Bad[1]
-        try:
-            user = await Client.get_users(username)
-        except:
-            await m.reply_text("**Error:** User not found or may be deleted!")
-            return
-    elif m.reply_to_message:
-        counts = int(Bad[0])
-        user = m.reply_to_message.from_user
-    else:
-        await m.reply_text("Usage: .pbiraid count username or reply")
-        return
+async def pbiraid_command(client: Client, message: Message):
+    await handle_spam_command(client, message, PBIRAID, "pbiraid")
 
-    if int(m.chat.id) in GROUP:
-        await m.reply_text("**Sorry !! I can't spam here.**")
-        return
-    if int(user.id) in VERIFIED_USERS:
-        await m.reply_text("I can't pbiraid on my developer.")
-        return
-    if int(user.id) in SUDO_USER:
-        await m.reply_text("This guy is a sudo user.")
-        return
-
-    mention = user.mention
-    for _ in range(counts):
-        r = f"{mention} {choice(PBIRAID)}"
-        await Client.send_message(m.chat.id, r)
-        await asyncio.sleep(0.3)
-
-
-# ONEWORDAID
+# ONEWORD
 @Client.on_message(filters.command("oneword", prefixes=".") & SUDO_USER)
-async def oneword(Client: Client, m: Message):
-    Bad = "".join(m.text.split(maxsplit=1)[1:]).split(" ", 2)
-    if len(Bad) == 2:
-        counts = int(Bad[0])
-        username = Bad[1]
-        try:
-            user = await Client.get_users(username)
-        except:
-            await m.reply_text("**Error:** User not found or may be deleted!")
-            return
-    elif m.reply_to_message:
-        counts = int(Bad[0])
-        user = m.reply_to_message.from_user
-    else:
-        await m.reply_text("Usage: .oneword count username or reply")
-        return
-
-    if int(m.chat.id) in GROUP:
-        await m.reply_text("**Sorry !! I can't spam here.**")
-        return
-    if int(user.id) in VERIFIED_USERS:
-        await m.reply_text("I can't oneword on my developer.")
-        return
-    if int(user.id) in SUDO_USER:
-        await m.reply_text("This guy is a sudo user.")
-        return
-
-    mention = user.mention
-    for _ in range(counts):
-        r = f"{mention} {choice(OneWord)}"
-        await Client.send_message(m.chat.id, r)
-        await asyncio.sleep(0.3)
-
+async def oneword_command(client: Client, message: Message):
+    await handle_spam_command(client, message, OneWord, "oneword")
 
 # HIRAID
 @Client.on_message(filters.command("hiraid", prefixes=".") & SUDO_USER)
-async def hiraid(Client: Client, m: Message):
-    Bad = "".join(m.text.split(maxsplit=1)[1:]).split(" ", 2)
-    if len(Bad) == 2:
-        counts = int(Bad[0])
-        username = Bad[1]
-        try:
-            user = await Client.get_users(username)
-        except:
-            await m.reply_text("**Error:** User not found or may be deleted!")
-            return
-    elif m.reply_to_message:
-        counts = int(Bad[0])
-        user = m.reply_to_message.from_user
-    else:
-        await m.reply_text("Usage: .hiraid count username or reply")
-        return
-
-    if int(m.chat.id) in GROUP:
-        await m.reply_text("**Sorry !! I can't spam here.**")
-        return
-    if int(user.id) in VERIFIED_USERS:
-        await m.reply_text("I can't hiraid on my developer.")
-        return
-    if int(user.id) in SUDO_USER:
-        await m.reply_text("This guy is a sudo user.")
-        return
-
-    mention = user.mention
-    for _ in range(counts):
-        r = f"{mention} {choice(HIRAID)}"
-        await Client.send_message(m.chat.id, r)
-        await asyncio.sleep(0.3)
-
-
-@Client.on_message(filters.command("raid", prefixes=".") & SUDO_USER)
-async def raid(Client: Client, m: Message):
-    if len(m.command) < 3 and not m.reply_to_message:
-        await m.reply_text("Usage: .raid count username or reply to user.")
-        return
-
-    try:
-        if m.reply_to_message:
-            counts = int(m.command[1])
-            user = m.reply_to_message.from_user
-        else:
-            counts = int(m.command[1])
-            username = m.command[2]
-            user = await Client.get_users(username)
-    except (IndexError, ValueError):
-        await m.reply_text("Please provide a valid count and username.")
-        return
-    except Exception:
-        await m.reply_text("User not found or deleted.")
-        return
-
-    if int(m.chat.id) in GROUP:
-        await m.reply_text("**Sorry !! I can't spam here.**")
-        return
-    if int(user.id) in VERIFIED_USERS:
-        await m.reply_text("I can't raid my developer.")
-        return
-    if int(user.id) in SUDO_USER:
-        await m.reply_text("This guy is a sudo user.")
-        return
-
-    mention = user.mention
-    for _ in range(counts):
-        r = f"{mention} {choice(RAID)}"
-        await Client.send_message(m.chat.id, r)
-        await asyncio.sleep(0.3)
+async def hiraid_command(client: Client, message: Message):
+    await handle_spam_command(client, message, HIRAID, "hiraid")
