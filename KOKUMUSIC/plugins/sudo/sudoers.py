@@ -2,9 +2,9 @@ from pyrogram import filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from pyrogram.types import Message
 from strings import get_string, helpers
-from KOKUMUSIC import app, SPECIAL_ID
+from KOKUMUSIC import app
 from pyrogram.types import InputMediaVideo
-from KOKUMUSIC.misc import SUDOERS
+from KOKUMUSIC.misc import SUDOERS, SPECIAL_ID
 from KOKUMUSIC.utils.database import add_sudo, remove_sudo
 from KOKUMUSIC.utils.decorators.language import language
 from KOKUMUSIC.utils.functions import extract_user
