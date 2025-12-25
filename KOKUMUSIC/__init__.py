@@ -12,7 +12,7 @@ EMOJIS = ["PPLAY_1", "PPLAY_2", "PPLAY_3", "PPLAY_4", "PPLAY_5",
           "PPLAY_16", "PPLAY_17"]
 
 dirr()
-git()
+#git()
 dbb()
 heroku()
 sudo()
